@@ -4,6 +4,7 @@
 *.log
 build
 dist
+.publish
 ng-cli
 tmp
 .grunt

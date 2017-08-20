@@ -21,55 +21,6 @@
     "vinyl-source-stream": "1.1.0",
     "waypoints": "4.0.1"
   },
-  "scripts": {
-    "postinstall": "gulp build --production"
-  },
-  "engines": {
-    "node": "6.9.1"
-  },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
-  },
-  "browser": {
-    "waypoints": "./node_modules/waypoints/lib/jquery.waypoints.min.js",
-    "lightbox": "./node_modules/lightbox2/dist/js/lightbox.min.js"
-  },
-  "browserify-shim": {
-    "waypoints": {
-      "exports": null,
-      "depends": "jquery:jQuery"
-    },
-    "lightbox": {
-      "exports": "lightbox",
-      "depends": "jquery:jQuery"
-    }
-  },
-  "//": "CUSTOM CONFIGURATION",
-  "config": {
-    "//": "Entry files",
-    "host": "127.0.0.1",
-    "port": "3000",
-    "baseUrl": "./",
-    "directories": {
-      "source": "src",
-      "destination": "build",
-      "temporary": "tmp",
-      "//": "Directories relative to `source` directory",
-      "modules": "_modules",
-      "layouts": "_layouts",
-      "fonts": "_fonts",
-      "images": "_images",
-      "styles": "_styles",
-      "scripts": "_scripts",
-      "data": "_data"
-    },
-    "entries": {
-      "js": "main**.js",
-      "css": "main**.less"
-    }
-  },
   "devDependencies": {
     "autoprefixer": "6.3.1",
     "babel-core": "6.9.1",
@@ -110,5 +61,54 @@
     "nunjucks": "2.4.0",
     "watchify": "3.7.0 ",
     "wrench": "1.5.8"
+  },
+  "scripts": {
+    "postinstall": "gulp build --production"
+  },
+  "engines": {
+    "node": "6.9.1"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "waypoints": "./node_modules/waypoints/lib/jquery.waypoints.min.js",
+    "lightbox": "./node_modules/lightbox2/dist/js/lightbox.min.js"
+  },
+  "browserify-shim": {
+    "waypoints": {
+      "exports": null,
+      "depends": "jquery:jQuery"
+    },
+    "lightbox": {
+      "exports": "lightbox",
+      "depends": "jquery:jQuery"
+    }
+  },
+  "//": "CUSTOM CONFIGURATION",
+  "config": {
+    "//": "Entry files",
+    "host": "127.0.0.1",
+    "port": "3000",
+    "baseUrl": "/pjm.github.io",
+    "directories": {
+      "source": "src",
+      "destination": "build",
+      "temporary": "tmp",
+      "//": "Directories relative to `source` directory",
+      "modules": "_modules",
+      "layouts": "_layouts",
+      "fonts": "_fonts",
+      "images": "_images",
+      "styles": "_styles",
+      "scripts": "_scripts",
+      "data": "_data"
+    },
+    "entries": {
+      "js": "main**.js",
+      "css": "main**.less"
+    }
   }
 }

@@ -1,14 +1,18 @@
+{% block config %}
+  {% set baseUrl = config.baseUrl or './' %}
+{% endblock %}
+
 <section id="top-splash" class="transparent-section">
   <div class="parallax">
-    <div class="parallax-image" style="background-image: url(/images/portfolio/painter/painter_1.jpg);"></div>
+    <div class="parallax-image" style="background-image: url({{ baseUrl}}/images/portfolio/painter/painter_1.jpg);"></div>
   </div>
   <div class="hero-container pt5 pb5">
     <div class="image-container">
-      <img id="logo-background" src="/images/9ad66e5c4d_Logo-01.png">
+      <img id="logo-background" src="{{ baseUrl}}/images/9ad66e5c4d_Logo-01.png">
     </div>
     <div id="site-slogan">
       <h3 class="tc white pv4">{{ site.data.config.siteSlogan }}</h3>
-      <a href="/#contact" class="action-button f3 pb3 fw7">Contact Us!</a>
+      <a href="{{ baseUrl}}/#contact" class="action-button f3 pb3 fw7">Contact Us!</a>
     </div>
   </div>
 </section>
@@ -33,38 +37,38 @@
     <div class="mw7 center flex flex-wrap w-100 justify-center ml0 pl0">
     <!-- TODO picture boxes that filter -->
       <div class="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
-        <a class="db" href="/portfolio#interior">
-          <img class="db" src="/images/portfolio/fendler/fendler_1.jpg" />
+        <a class="db" href="{{ baseUrl }}/portfolio#interior">
+          <img class="db" src="{{ baseUrl }}/images/portfolio/fendler/fendler_1.jpg" />
           <h3 class="absolute w-100 tc blue-darker">Interior</h3>
         </a>
       </div>
       <div class="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
-        <a class="db" href="/portfolio#bath">
-          <img class="db" src="/images/portfolio/brady_gilmore/brady_gilmore_8.jpg" />
+        <a class="db" href="{{baseUrl}}/portfolio#bath">
+          <img class="db" src="{{ baseUrl }}/images/portfolio/brady_gilmore/brady_gilmore_8.jpg" />
           <h3 class="absolute w-100 tc blue-darker">Bath</h3>
         </a>
       </div>
       <div class="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
-        <a class="db" href="/portfolio#kitchen">
-          <img class="db" src="/images/portfolio/fendler/fendler_4.jpg" />
+        <a class="db" href="{{ baseUrl }}/portfolio#kitchen">
+          <img class="db" src="{{ baseUrl }}/images/portfolio/fendler/fendler_4.jpg" />
           <h3 class="absolute w-100 tc blue-darker">Kitchen</h3>
         </a>
       </div>
       <div class="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
-        <a class="db" href="/portfolio#basement">
-          <img class="db" src="/images/portfolio/teahan/teahan_4.jpg" />
+        <a class="db" href="{{ baseUrl }}/portfolio#basement">
+          <img class="db" src="{{ baseUrl }}/images/portfolio/teahan/teahan_4.jpg" />
           <h3 class="absolute w-100 tc blue-darker">Basement</h3>
         </a>
       </div>
       <div class="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
-        <a class="db" href="/portfolio#exterior">
-          <img class="db" src="/images/portfolio/mach_deck/mach_deck_1.jpg" />
+        <a class="db" href="{{ baseUrl }}/portfolio#exterior">
+          <img class="db" src="{{ baseUrl }}/images/portfolio/mach_deck/mach_deck_1.jpg" />
           <h3 class="absolute w-100 tc blue-darker">Exterior</h3>
         </a>
       </div>
       <div class="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
-        <a class="db" href="/portfolio#deck">
-          <img class="db" src="/images/portfolio/klapmeyer/klapmeyer_1.jpg" />
+        <a class="db" href="{{ baseUrl }}/portfolio#deck">
+          <img class="db" src="{{ baseUrl }}/images/portfolio/klapmeyer/klapmeyer_1.jpg" />
           <h3 class="absolute w-100 tc blue-darker">Deck</h3>
         </a>
       </div>

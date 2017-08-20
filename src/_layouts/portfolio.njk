@@ -22,7 +22,7 @@
             </h3>
             <div class="tags tc pb2">
               {% for tag in project.tags %}
-                <a href="/portfolio#{{tag | lower}}" data-tagname="{{ tag | lower }}" class="filter-tag blue-darker underline-hover">{{ tag }}</a>{% if not loop.last %}<span>, </span>{% endif %}
+                <a href="{{ baseUrl }}/portfolio#{{tag | lower}}" data-tagname="{{ tag | lower }}" class="filter-tag blue-darker underline-hover">{{ tag }}</a>{% if not loop.last %}<span>, </span>{% endif %}
               {% endfor %}
             </div>
           </div>

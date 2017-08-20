@@ -20,7 +20,7 @@
     <title>{{ site.data.config.siteTitle }}</title>
     <meta name="description" content="{{ site.data.config.siteSlogan }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <base href="/">
+    <base href="{{ baseUrl }}/">
     <link rel="stylesheet" href="{{ baseUrl }}styles/main.css" onload="this.media='all';">
     {% block stylesheets %}{% endblock %}
   </head>
