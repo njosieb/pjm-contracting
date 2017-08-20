@@ -1,0 +1,20 @@
+---
+- label: 'Home'
+  route: '/'
+  description: 'Home button'
+
+- label: 'About Us'
+  route: '/#about-us'
+  description: 'About Us button'
+
+- label: 'What I Do'
+  route: '/#work'
+  description: 'Residential button'
+
+- label: 'Contact Us'
+  route: '/#contact-us'
+  description: 'Contact Us button'
+
+- label: 'Portfolio'
+  route: '/portfolio'
+  description: 'Portfolio button'
