@@ -66,5 +66,10 @@ gulp.task('serve', [
   'watch'
 ]);
 
+gulp.task('deploy', [
+  'build',
+  'ghPages'
+])
+
 // Testing
 gulp.task('test', ['eslint']);

@@ -3,7 +3,6 @@
 import fs from 'fs';
 import path from 'path';
 import foldero from 'foldero';
-import nunjucks from 'gulp-nunjucks-html';
 import yaml from 'js-yaml';
 
 export default function(gulp, plugins, args, config, taskTarget, browserSync) {
@@ -61,7 +60,7 @@ export default function(gulp, plugins, args, config, taskTarget, browserSync) {
         data: siteData
       }
     }))
-    .pipe(nunjucks({
+    .pipe(plugins.nunjucksHtml({
       searchPaths: [path.join(dirs.source)],
       ext: '.html'
     })
