@@ -12,7 +12,7 @@
   description: 'Residential button'
 
 - label: 'Contact Us'
-  route: '/#contact-us'
+  route: '/#contact'
   description: 'Contact Us button'
 
 - label: 'Portfolio'
