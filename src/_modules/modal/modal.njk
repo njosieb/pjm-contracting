@@ -1,5 +1,6 @@
-{% macro modal(project) %}
+{% set baseUrl = '/pjm.github.io' %}
 
+{% macro modal(project) %}
 {% set project = project or {} %}
 {% set _id = project.id or '' %}
 {% set _title = project.title or '' %}
@@ -26,8 +27,8 @@
       <div class="project-images">
         {% for image in _slideshow %}
         <div class="image-container">
-          <a href="{{ image.slideUrl }}" data-lightbox="{{ _id }}">
-            <img class="project-image" src="{{ image.slideUrl }}" />
+          <a href="{{ baseUrl}}{{ image.slideUrl }}" data-lightbox="{{ _id }}">
+            <img class="project-image" src="{{ baseUrl}}{{ image.slideUrl }}" />
           </a>
         </div>
         {% endfor %}
