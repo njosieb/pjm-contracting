@@ -1,20 +1,20 @@
 ---
 - label: 'Home'
-  route: '/'
+  route: '/pjm.github.io/'
   description: 'Home button'
 
 - label: 'About Us'
-  route: '/#about-us'
+  route: '/pjm.github.io/#about-us'
   description: 'About Us button'
 
 - label: 'What I Do'
-  route: '/#work'
+  route: '/pjm.github.io/#work'
   description: 'Residential button'
 
 - label: 'Contact Us'
-  route: '/#contact'
+  route: '/pjm.github.io/#contact'
   description: 'Contact Us button'
 
 - label: 'Portfolio'
-  route: '/portfolio'
+  route: '/pjm.github.io/portfolio'
   description: 'Portfolio button'
