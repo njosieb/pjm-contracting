@@ -1,18 +1,14 @@
-{% block config %}
-  {% set baseUrl = config.baseUrl or './' %}
-{% endblock %}
-
 <div class="site-header">
   <div class="header-wrapper">
     <div class="site-title">
-      <a href="{{ baseUrl }}/" class="menu-item">
+      <a href="/" class="menu-item">
         <h1>PJM Contracting LLC</h1>
       </a>
       <small><em>For All Your Remodel Needs</em></small>
     </div>
     <div class="menu">
       {% for item in site.data.menu %}
-      <a title="{{  item.description  }}" href="{{baseUrl}}{{  item.route  }}" class="menu-item">
+      <a title="{{  item.description  }}" href="{{  item.route  }}" class="menu-item">
         {{  item.label  }}
       </a>
       {% endfor %}

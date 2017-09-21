@@ -1,7 +1,3 @@
-{% block config %}
-  {% set baseUrl = config.baseUrl or './' %}
-{% endblock %}
-
 <!-- nav.njk -->
 <nav id="main-menu" class="right nav-menu">
   <div class="menu-section">
@@ -13,7 +9,7 @@
     {% endfor %}
     <div id="top-splash" class="transparent-section">
         <div class="parallax">
-        <div class="parallax-image" style="background-image: url({{baseUrl}}/images/denver-kitchen-remodel.jpg); transform: translate3d(0, 0, 0);"></div>
+        <div class="parallax-image" style="background-image: url(/images/denver-kitchen-remodel.jpg); transform: translate3d(0, 0, 0);"></div>
     </div>
   </div>
 </nav>
