@@ -1,5 +1,5 @@
 {
-  "name": "website-bootstrapper",
+  "name": "pjm-contracting",
   "version": "0.0.1",
   "license": "MIT",
   "dependencies": {
@@ -92,7 +92,7 @@
     "//": "Entry files",
     "host": "127.0.0.1",
     "port": "3000",
-    "baseUrl": "/pjm.github.io",
+    "baseUrl": "",
     "directories": {
       "source": "src",
       "destination": "build",
