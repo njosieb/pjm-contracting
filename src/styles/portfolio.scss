@@ -1,0 +1,43 @@
+.project {
+  flex: 1 1 34%;
+  align-items: center;
+  max-width: 50%;
+
+  .image-container {
+    justify-content: space-around;
+  }
+}
+
+main.portfolio {
+  padding: 0;
+}
+
+.project-info {
+  top: 0;
+  background-color: fade($grey-lightest, 80%);
+}
+
+.project-filter {
+  color: $offBlack;
+  font-weight: 300;
+
+  &:hover {
+    color: $green-color;
+  }
+
+  &.active-tag {
+    font-weight: 700;
+    color: $blue-darker;
+  }
+}
+
+.portfolio-header {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom 40%;
+}
+
+h1 {
+  text-shadow: 1px 1px $blue-darker, 1px -1px $blue-darker,
+    -1px -1px $blue-darker, -1px 1px $blue-darker;
+}

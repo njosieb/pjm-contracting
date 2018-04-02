@@ -1,0 +1,38 @@
+@mixin tachyons-override($class, $color) {
+  .#{$class} {
+    color: $color;
+  }
+  .bg-#{$class} {
+    background-color: $color;
+  }
+  .hover-#{$class} {
+    &:hover,
+    &:focus {
+      color: $color;
+    }
+  }
+  .hover-bg-#{$class} {
+    &:hover,
+    &:focus {
+      background-color: $color;
+    }
+  }
+  .b--#{$class} {
+    border-color: $color;
+  }
+}
+
+@include tachyons-override("green", $green-color);
+@include tachyons-override("green-light", $green-light);
+@include tachyons-override("blue", $blue-primary);
+@include tachyons-override("blue-darker", $blue-darker);
+@include tachyons-override("black", $black);
+@include tachyons-override("off-black", $offBlack);
+
+.hover-shadow {
+  transition: box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+}
