@@ -130,9 +130,9 @@ export default class IndexPage extends React.Component {
             <h2>Contact Us</h2>
             <p>12345 Hire Us Today Drive</p>
             <p>
-              Email Us Today at{" "}
+              Email Us Today at
               <a
-                className="blue-darker underline"
+                className="blue-darker underline pl2"
                 href="mailto:pjm966@gmail.com"
               >
                 pjm966@gmail.com
