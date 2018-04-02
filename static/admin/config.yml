@@ -1,8 +1,6 @@
 backend:
-  name: test-repo # localhost testing
-  # Enable below for production
-  # name: git-gateway
-  # branch: master
+  name: github
+  repo: njosieb/pjm-contracting
 
 media_folder: static/img
 public_folder: /img
