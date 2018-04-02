@@ -1,6 +1,11 @@
 backend:
-  name: github
-  repo: njosieb/pjm-contracting
+  # Prod
+  name: git-gateway
+  branch: master
+
+  # Local
+  # name: github
+  # repo: njosieb/pjm-contracting
 
 media_folder: static/img
 public_folder: /img
