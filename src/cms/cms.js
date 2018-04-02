@@ -1,3 +1,3 @@
 import CMS from "netlify-cms";
 
-CMS.registerPreviewStyle("/styles.css");
+// CMS.registerPreviewStyle("/styles.css");
