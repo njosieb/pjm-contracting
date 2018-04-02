@@ -9,15 +9,15 @@ tags:
   - Residential
 featured: /img/bradford_2.jpg
 slideshow:
-  - slideImage: '/images/portfolio/bradford/bradford_1.jpg'
+  - slideImage: '/img/bradford_1.jpg'
     caption:
-  - slideImage: '/images/portfolio/bradford/bradford_2.jpg'
+  - slideImage: '/img/bradford_2.jpg'
     caption:
-  - slideImage: '/images/portfolio/bradford/bradford_3.jpg'
+  - slideImage: '/img/bradford_3.jpg'
     caption:
-  - slideImage: '/images/portfolio/bradford/bradford_4.jpg'
+  - slideImage: '/img/bradford_4.jpg'
     caption:
-  - slideImage: '/images/portfolio/bradford/bradford_5.jpg'
+  - slideImage: '/img/bradford_5.jpg'
     caption:
 ---
 
