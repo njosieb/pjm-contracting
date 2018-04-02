@@ -2,7 +2,10 @@
 
 # compiled output
 *.log
+.cache
+public
 build
+static/admin/*.bundle.*
 dist
 .publish
 ng-cli
