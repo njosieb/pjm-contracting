@@ -1,7 +1,7 @@
 ---
 templateKey: project
 title: Bradford
-description: yarp
+description: Derp
 date: 2017-07-07T00:00:00.000Z
 tags:
   - Interior
