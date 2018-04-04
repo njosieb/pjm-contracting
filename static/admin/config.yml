@@ -6,29 +6,29 @@ media_folder: static/img
 public_folder: /img
 
 collections:
-  - name: "projects"
-    label: "Projects"
+  - name: projects
+    label: Projects
     folder: "src/pages/projects"
     create: true
     slug: "{{year}}-{{month}}-{{slug}}"
     fields:
-      - {label: "Template Key", name: "templateKey", widget: "hidden", default: "project"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "text"}
-      - {label: "Date", name: "date", widget: "date"}
-      - {label: "Tags", name: "tags", widget: "list"}
-      - {label: "Featured Image", name: "featured", widget: "image"}
-      - {label: "Slideshow", name: "slideshow", widget: "list", "fields": [{label: "Image", name: "slideImage", widget: "image"}, {label: "Caption", name: "caption", widget: "string"}]}
+      - {label: Template Key, name: templateKey, widget: hidden, default: project}
+      - {label: Title, name: title, widget: string}
+      - {label: Description, name: description, widget: text}
+      - {label: Date, name: date, widget: date}
+      - {label: Tags, name: tags, widget: list}
+      - {label: Featured Image, name: featured, widget: image}
+      - {label: Slideshow, name: slideshow, widget: list, fields: [{label: Image, name: slideImage, widget: image}, {label: Caption, name: caption, widget: string}]}
 
-  - name: "pages"
-    label: "Pages"
+  - name: pages
+    label: Pages
     files:
-      - file: "src/pages/portfolio/index.md"
-        label: "Portfolio Page"
-        name: "portfolio"
+      - file: src/pages/portfolio/index.md
+        label: Portfolio Page
+        name: portfolio
         fields:
-          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "portfolio-page"}
+          - {label: Template Key, name: templateKey, widget: hidden, default: portfolio-page}
           - {label: Title, name: title, widget: string}
           - {label: Heading, name: heading, widget: image}
           - {label: Intro, name: intro, widget: text}
-          - {label: Projects, name: projects, widget: list, fields: {label: Project, name: project, widget: relation, collection: projects, searchFields: ["title"], valueField: title}}
+          - {label: Projects, name: projects, widget: list, fields: [{label: Project, name: project, widget: relation, collection: projects, searchFields: [title], valueField: title}]}
