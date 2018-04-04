@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // TODO: Add tags
-export const PortfolioPageTemplate = ({ title, heading, intro, projects }) => {
+export const PortfolioPageTemplate = ({ title, heading, intro }) => {
   return (
     <section className="portfolio-main">
       <div
@@ -27,34 +27,28 @@ export const PortfolioPageTemplate = ({ title, heading, intro, projects }) => {
       {% endfor %} */}
         </div>
         <div className="portfolio-container flex flex-wrap justify-center pb4 pt4">
-          {projects.map((project, id) => (
-            <div
-              key={id}
-              id={project.id}
-              className="project pointer relative mb4 mh4 {{ project.tags | string | replace(',', ' ') | lower }}"
-            >
-              <div className="project-info absolute w-100">
-                <h3 className="project-title tc pt3 ma0 flex items-center justify-center">
-                  <span className="project-title-text blue-darker underline-hover lh-copy">
-                    {project.title}
-                  </span>
-                  <div className="project-date tc f5 lh-copy">
-                    &nbsp;&mdash; {project.date}
-                  </div>
-                </h3>
-                <div className="tags tc pb2">
-                  {/* {% for tag in project.tags %}
-                <a href="/portfolio#{{tag | lower}}" data-tagname="{{ tag | lower }}" class="filter-tag blue-darker underline-hover">{{ tag }}</a>{% if not loop.last %}<span>, </span>{% endif %}
-              {% endfor %} */}
-                </div>
-              </div>
-              <div className="image-container center hover-shadow">
-                <img className="db" src={project.image} />
-              </div>
-            </div>
-            // {% else %}
+          {/* {projects.map((project, id) => (
+            // <div
+            //   key={id}
+            //   id={project.id}
+            //   className="project pointer relative mb4 mh4 {{ project.tags | string | replace(',', ' ') | lower }}"
+            // >
+            //   <div className="project-info absolute w-100">
+            //     <h3 className="project-title tc pt3 ma0 flex items-center justify-center">
+            //       <span className="project-title-text blue-darker underline-hover lh-copy">
+            //         {project.title}
+            //       </span>
+            //       <div className="project-date tc f5 lh-copy">
+            //         &nbsp;&mdash; {project.date}
+            //       </div>
+            //     </h3>
+            //   </div>
+            //   <div className="image-container center hover-shadow">
+            //     <img className="db" src={project.image} />
+            //   </div>
+            // </div>
             // <div>Projects Coming Soon!!</div>
-          ))}
+              ))}*/}
         </div>
       </div>
     </section>
@@ -64,8 +58,7 @@ export const PortfolioPageTemplate = ({ title, heading, intro, projects }) => {
 PortfolioPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   heading: PropTypes.string.isRequired,
-  intro: PropTypes.string.isRequired,
-  projects: PropTypes.array
+  intro: PropTypes.string.isRequired
 }
 
 const PortfolioPage = ({ data }) => {
@@ -76,7 +69,6 @@ const PortfolioPage = ({ data }) => {
       title={frontmatter.title}
       heading={frontmatter.heading}
       intro={frontmatter.intro}
-      projects={frontmatter.projects}
     />
   )
 }

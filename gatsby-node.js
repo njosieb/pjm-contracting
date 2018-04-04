@@ -29,6 +29,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     }
 
     const projects = result.data.allMarkdownRemark.edges
+    console.log(projects)
     projects.forEach(edge => {
       const id = edge.node.id
       createPage({
