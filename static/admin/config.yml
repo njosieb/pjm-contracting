@@ -31,6 +31,4 @@ collections:
           - {label: Title, name: title, widget: string}
           - {label: Heading, name: heading, widget: image}
           - {label: Intro, name: intro, widget: text}
-          - {label: Projects, name: projects,  widget: relation, collection: projects, searchFields: ["title"], valueField: "title"}
-
-          # widget: list, fields: [{label: Project, name: project,
+          - {label: Projects, name: projects, widget: list, fields: [{label: Project, name: project, widget: relation, collection: projects, searchFields: ["title"], valueField: "title"}]}
