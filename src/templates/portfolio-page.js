@@ -94,6 +94,7 @@ export const portfolioPageQuery = graphql`
         title
         heading
         intro
+        projects
       }
     }
   }
