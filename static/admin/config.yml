@@ -31,8 +31,4 @@ collections:
           - {label: Title, name: title, widget: string}
           - {label: Heading, name: heading, widget: image}
           - {label: Intro, name: intro, widget: text}
-<<<<<<< HEAD
           - {label: Projects, name: projects, widget: list, fields: {label: Project, name: project, widget: relation, collection: projects, searchFields: ["title"], valueField: title}}
-=======
-          - {label: Projects, name: projects, widget: list, field: {label: Project, name: project-item, widget: relation, collection: projects, searchFields: ["title"], valueField: title}}
->>>>>>> 9bc70c6316b6c74ced0fce5c3c0d2d1f8fdb7328
