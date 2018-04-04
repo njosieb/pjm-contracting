@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const Footer = () => (
   <div className="site-footer">
@@ -32,7 +32,7 @@ const Footer = () => (
         <p className="copyright-row dark-grey">
           <span className="copyright">Copyright 2017</span>
           <span className="made-by">
-            Site built by{" "}
+            Site built by{' '}
             <a
               href="http://cvharris.com"
               rel="noopener noreferrer"
@@ -45,6 +45,6 @@ const Footer = () => (
       </div>
     </div>
   </div>
-);
+)
 
-export default Footer;
+export default Footer

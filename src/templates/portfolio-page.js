@@ -1,59 +1,100 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Content, { HTMLContent } from "../components/Content";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-export const AboutPageTemplate = ({ title, content, contentComponent }) => {
-  const PageContent = contentComponent || Content;
-
+// TODO: Add tags
+export const PortfolioPageTemplate = ({ title, heading, intro, projects }) => {
   return (
-    <section className="section section--gradient">
-      <div className="container">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <div className="section">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                {title}
-              </h2>
-              <PageContent className="content" content={content} />
-            </div>
+    <section className="portfolio-main">
+      <div
+        className="portfolio-header pt6 pb5"
+        style={{
+          backgroundImage: heading
+        }}
+      >
+        <h1 className="mw7 f-5 center white mv0">{title}</h1>
+      </div>
+      <div className="portfoilo-body">
+        <p className="mw6 center tc pv3">{intro}</p>
+        <div className="filtering-tags mw7 center flex justify-center">
+          <div
+            id="all-projects"
+            className="project-filter underline-hover mh3 pointer f4"
+          >
+            All
           </div>
+          {/* {% for tag in site.data.config.tags %}
+      <div data-tagname="{{ tag | lower }}" class="project-filter clickable underline-hover mh3 pointer f4">{{ tag }}</div>
+      {% endfor %} */}
+        </div>
+        <div className="portfolio-container flex flex-wrap justify-center pb4 pt4">
+          {projects.map((project, id) => (
+            <div
+              key={id}
+              id={project.id}
+              className="project pointer relative mb4 mh4 {{ project.tags | string | replace(',', ' ') | lower }}"
+            >
+              <div className="project-info absolute w-100">
+                <h3 className="project-title tc pt3 ma0 flex items-center justify-center">
+                  <span className="project-title-text blue-darker underline-hover lh-copy">
+                    {project.title}
+                  </span>
+                  <div className="project-date tc f5 lh-copy">
+                    &nbsp;&mdash; {project.date}
+                  </div>
+                </h3>
+                <div className="tags tc pb2">
+                  {/* {% for tag in project.tags %}
+                <a href="/portfolio#{{tag | lower}}" data-tagname="{{ tag | lower }}" class="filter-tag blue-darker underline-hover">{{ tag }}</a>{% if not loop.last %}<span>, </span>{% endif %}
+              {% endfor %} */}
+                </div>
+              </div>
+              <div className="image-container center hover-shadow">
+                <img className="db" src={project.image} />
+              </div>
+            </div>
+            // {% else %}
+            // <div>Projects Coming Soon!!</div>
+          ))}
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-AboutPageTemplate.propTypes = {
+PortfolioPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
-  content: PropTypes.string,
-  contentComponent: PropTypes.func
-};
+  heading: PropTypes.string.isRequired,
+  intro: PropTypes.string.isRequired,
+  projects: PropTypes.array
+}
 
-const AboutPage = ({ data }) => {
-  const { markdownRemark: post } = data;
+const PortfolioPage = ({ data }) => {
+  const { frontmatter } = data.markdownRemark
 
   return (
-    <AboutPageTemplate
-      contentComponent={HTMLContent}
-      title={post.frontmatter.title}
-      content={post.html}
+    <PortfolioPageTemplate
+      title={frontmatter.title}
+      heading={frontmatter.heading}
+      intro={frontmatter.intro}
+      projects={frontmatter.projects}
     />
-  );
-};
+  )
+}
 
-AboutPage.propTypes = {
+PortfolioPage.propTypes = {
   data: PropTypes.object.isRequired
-};
+}
 
-export default AboutPage;
+export default PortfolioPage
 
-export const aboutPageQuery = graphql`
-  query AboutPage($id: String!) {
+export const portfolioPageQuery = graphql`
+  query PortfolioPage($id: String!) {
     markdownRemark(id: { eq: $id }) {
-      html
       frontmatter {
         title
+        heading
+        intro
       }
     }
   }
-`;
+`

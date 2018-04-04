@@ -1,11 +1,6 @@
 backend:
-  # Prod
   name: git-gateway
   branch: master
-
-  # Local
-  # name: github
-  # repo: njosieb/pjm-contracting
 
 media_folder: static/img
 public_folder: /img
@@ -22,8 +17,8 @@ collections:
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Date", name: "date", widget: "date"}
       - {label: "Tags", name: "tags", widget: "list"}
-      - {label: "Featured Image", name: "featured", required: false, widget: "image"}
-      - {label: "Slideshow", name: "slideshow", required: false, widget: "list", "fields": [{label: "Image", name: "slideImage", widget: "image"}, {label: "Caption", name: "caption", widget: "string"}]}
+      - {label: "Featured Image", name: "featured", widget: "image"}
+      - {label: "Slideshow", name: "slideshow", widget: "list", "fields": [{label: "Image", name: "slideImage", widget: "image"}, {label: "Caption", name: "caption", widget: "string"}]}
 
   - name: "pages"
     label: "Pages"
@@ -36,4 +31,4 @@ collections:
           - {label: Title, name: title, widget: string}
           - {label: Heading, name: heading, widget: image}
           - {label: Intro, name: intro, widget: text}
-          - {label: Projects, name: projects, widget: list, field: {label: Project, name: project-item, widget: relation, collection: project, searchFields: ["title"], valueField: title}}
+          - {label: Projects, name: projects, widget: list, fields: {label: Project, name: project, widget: relation, collection: projects, searchFields: ["title"], valueField: title}}

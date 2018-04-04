@@ -1,13 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Link from "gatsby-link";
+import React from 'react'
+import PropTypes from 'prop-types'
+import Link from 'gatsby-link'
 
-import logo from "../img/logo.png";
+import logo from '../img/logo.png'
 
 export default class IndexPage extends React.Component {
   render() {
-    const { data } = this.props;
-    const { edges: posts } = data.allMarkdownRemark;
+    // const { data } = this.props;
+    // const { edges: projects } = data.allMarkdownRemark;
 
     return (
       <main className="home-main">
@@ -16,7 +16,7 @@ export default class IndexPage extends React.Component {
             <div
               className="parallax-image"
               style={{
-                backgroundImage: "url(/img/painter_1.jpg)"
+                backgroundImage: 'url(/img/painter_1.jpg)'
               }}
             />
           </div>
@@ -29,7 +29,7 @@ export default class IndexPage extends React.Component {
                 'Big project, small job, I'll manage'
               </h3>
               <Link
-                to={{ pathname: "/", hash: "#contact" }}
+                to={{ pathname: '/', hash: '#contact' }}
                 className="action-button f3 pb3 fw7"
               >
                 Contact Us!
@@ -68,7 +68,7 @@ export default class IndexPage extends React.Component {
               <div className="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
                 <Link
                   className="db"
-                  to={{ pathname: "/portfolio", hash: "#interior" }}
+                  to={{ pathname: '/portfolio', hash: '#interior' }}
                 >
                   <img className="db" src="/img/fendler_1.jpg" />
                   <h3 className="absolute w-100 tc blue-darker">Interior</h3>
@@ -77,7 +77,7 @@ export default class IndexPage extends React.Component {
               <div className="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
                 <Link
                   className="db"
-                  to={{ pathname: "/portfolio", hash: "#bath" }}
+                  to={{ pathname: '/portfolio', hash: '#bath' }}
                 >
                   <img className="db" src="/img/brady_gilmore_8.jpg" />
                   <h3 className="absolute w-100 tc blue-darker">Bath</h3>
@@ -86,7 +86,7 @@ export default class IndexPage extends React.Component {
               <div className="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
                 <Link
                   className="db"
-                  to={{ pathname: "/portfolio", hash: "#kitchen" }}
+                  to={{ pathname: '/portfolio', hash: '#kitchen' }}
                 >
                   <img className="db" src="/img/fendler_4.jpg" />
                   <h3 className="absolute w-100 tc blue-darker">Kitchen</h3>
@@ -95,7 +95,7 @@ export default class IndexPage extends React.Component {
               <div className="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
                 <Link
                   className="db"
-                  to={{ pathname: "/portfolio", hash: "#basement" }}
+                  to={{ pathname: '/portfolio', hash: '#basement' }}
                 >
                   <img className="db" src="/img/teahan_4.jpg" />
                   <h3 className="absolute w-100 tc blue-darker">Basement</h3>
@@ -104,7 +104,7 @@ export default class IndexPage extends React.Component {
               <div className="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
                 <Link
                   className="db"
-                  to={{ pathname: "/portfolio", hash: "#exterior" }}
+                  to={{ pathname: '/portfolio', hash: '#exterior' }}
                 >
                   <img className="db" src="/img/mach_deck_1.jpg" />
                   <h3 className="absolute w-100 tc blue-darker">Exterior</h3>
@@ -113,7 +113,7 @@ export default class IndexPage extends React.Component {
               <div className="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
                 <Link
                   className="db"
-                  to={{ pathname: "/portfolio", hash: "#deck" }}
+                  to={{ pathname: '/portfolio', hash: '#deck' }}
                 >
                   <img className="db" src="/img/klapmeyer_1.jpg" />
                   <h3 className="absolute w-100 tc blue-darker">Deck</h3>
@@ -141,35 +141,35 @@ export default class IndexPage extends React.Component {
           </div>
         </section>
       </main>
-    );
+    )
   }
 }
 
-IndexPage.propTypes = {
-  data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
-      edges: PropTypes.array
-    })
-  })
-};
+// IndexPage.propTypes = {
+//   data: PropTypes.shape({
+//     allMarkdownRemark: PropTypes.shape({
+//       edges: PropTypes.array
+//     })
+//   })
+// }
 
-export const pageQuery = graphql`
-  query IndexQuery {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
-      edges {
-        node {
-          excerpt(pruneLength: 400)
-          id
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            templateKey
-            date(formatString: "MMMM DD, YYYY")
-          }
-        }
-      }
-    }
-  }
-`;
+// export const pageQuery = graphql`
+//   query IndexQuery {
+//     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+//       edges {
+//         node {
+//           excerpt(pruneLength: 400)
+//           id
+//           fields {
+//             slug
+//           }
+//           frontmatter {
+//             title
+//             templateKey
+//             date(formatString: "MMMM DD, YYYY")
+//           }
+//         }
+//       }
+//     }
+//   }
+// `

@@ -1,92 +1,88 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { kebabCase } from "lodash";
-import Helmet from "react-helmet";
-import Link from "gatsby-link";
-import Content, { HTMLContent } from "../components/Content";
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export const ProjectTemplate = ({
-  content,
-  contentComponent,
-  description,
-  tags,
   title,
-  helmet
+  description,
+  date,
+  tags,
+  featured,
+  slideshow
 }) => {
-  const ProjectContent = contentComponent || Content;
-
   return (
-    <section className="section">
-      {helmet || ""}
-      <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-              {title}
-            </h1>
-            <p>{description}</p>
-            <ProjectContent content={content} />
-            {tags && tags.length ? (
-              <div style={{ marginTop: `4rem` }}>
-                <h4>Tags</h4>
-                <ul className="taglist">
-                  {tags.map(tag => (
-                    <li key={tag + `tag`}>
-                      <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-          </div>
+    <section className="modal relative">
+      <div className="modal-header">
+        <h3>{title}</h3>
+      </div>
+      <div className="modal-body">
+        <div className="project-date">{date}</div>
+        <div className="project-tags">
+          {tags.map((tag, i) => (
+            <span key={i} className="tag">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <p className="project-description">{description}</p>
+        <div className="project-images">
+          {slideshow.map((image, id) => (
+            <div key={id} className="image-container">
+              <a href={image.slideImage} data-lightbox={id}>
+                <img className="project-image" src={image.slideImage} />
+              </a>
+            </div>
+          ))}
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
 ProjectTemplate.propTypes = {
-  content: PropTypes.string.isRequired,
-  contentComponent: PropTypes.func,
-  description: PropTypes.string,
-  title: PropTypes.string,
-  helmet: PropTypes.instanceOf(Helmet)
-};
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  tags: PropTypes.array,
+  featured: PropTypes.string,
+  slideshow: PropTypes.array
+}
+
+export const projectQuery = graphql`
+  query ProjectByID($id: String!) {
+    markdownRemark(id: { eq: $id }) {
+      frontmatter {
+        title
+        description
+        date(formatString: "MMMM, YYYY")
+        tags
+        featured
+        slideshow {
+          slideImage
+        }
+      }
+    }
+  }
+`
 
 const Project = ({ data }) => {
-  const { markdownRemark: post } = data;
+  const { markdownRemark: project } = data
 
   return (
     <ProjectTemplate
-      content={post.html}
-      contentComponent={HTMLContent}
-      description={post.frontmatter.description}
-      helmet={<Helmet title={`${post.frontmatter.title} | Blog`} />}
-      tags={post.frontmatter.tags}
-      title={post.frontmatter.title}
+      title={project.frontmatter.title}
+      description={project.frontmatter.description}
+      date={project.frontmatter.date}
+      tags={project.frontmatter.tags}
+      featured={project.frontmatter.featured}
+      slideshow={project.frontmatter.slideshow}
     />
-  );
-};
+  )
+}
 
 Project.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.object
   })
-};
+}
 
-export default Project;
-
-export const pageQuery = graphql`
-  query ProjectByID($id: String!) {
-    markdownRemark(id: { eq: $id }) {
-      id
-      html
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        title
-        description
-        tags
-      }
-    }
-  }
-`;
+export default Project
