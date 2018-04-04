@@ -6,6 +6,5 @@ intro: >-
   My projects span a variety of different types. Click on one of the tags to
   filter my portfolio!
 projects:
-  - '2'
 ---
 
