@@ -5,16 +5,24 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "chrome",
+      "request": "attach",
+      "name": "Attach to Chrome",
+      "port": 9222,
+      "webRoot": "${workspaceFolder}"
+    },
+    {
       "type": "node",
       "request": "attach",
       "name": "Attach by Process ID",
       "processId": "${command:PickProcess}"
     },
     {
-      "type": "node",
+      "name": "Chrome",
+      "type": "chrome",
       "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceFolder}/develop"
+      "url": "http://localhost:8000",
+      "webRoot": "${workspaceRoot}/src"
     }
   ]
 }

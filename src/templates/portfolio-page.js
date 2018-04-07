@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 // TODO: Add tags
-export const PortfolioPageTemplate = ({ title, heading, intro }) => {
+export const PortfolioPageTemplate = ({ title, heading, intro, projects }) => {
   return (
     <section className="portfolio-main">
       <div
@@ -27,28 +27,27 @@ export const PortfolioPageTemplate = ({ title, heading, intro }) => {
       {% endfor %} */}
         </div>
         <div className="portfolio-container flex flex-wrap justify-center pb4 pt4">
-          {/* {projects.map((project, id) => (
-            // <div
-            //   key={id}
-            //   id={project.id}
-            //   className="project pointer relative mb4 mh4 {{ project.tags | string | replace(',', ' ') | lower }}"
-            // >
-            //   <div className="project-info absolute w-100">
-            //     <h3 className="project-title tc pt3 ma0 flex items-center justify-center">
-            //       <span className="project-title-text blue-darker underline-hover lh-copy">
-            //         {project.title}
-            //       </span>
-            //       <div className="project-date tc f5 lh-copy">
-            //         &nbsp;&mdash; {project.date}
-            //       </div>
-            //     </h3>
-            //   </div>
-            //   <div className="image-container center hover-shadow">
-            //     <img className="db" src={project.image} />
-            //   </div>
-            // </div>
-            // <div>Projects Coming Soon!!</div>
-              ))}*/}
+          {projects.map((project, id) => (
+            <div
+              key={id}
+              id={project.id}
+              className="project pointer relative mb4 mh4 {{ project.tags | string | replace(',', ' ') | lower }}"
+            >
+              <div className="project-info absolute w-100">
+                <h3 className="project-title tc pt3 ma0 flex items-center justify-center">
+                  <span className="project-title-text blue-darker underline-hover lh-copy">
+                    {project.title}
+                  </span>
+                  <div className="project-date tc f5 lh-copy">
+                    &nbsp;&mdash; {project.date}
+                  </div>
+                </h3>
+              </div>
+              <div className="image-container center hover-shadow">
+                <img className="db" src={project.featured} />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -58,17 +57,35 @@ export const PortfolioPageTemplate = ({ title, heading, intro }) => {
 PortfolioPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   heading: PropTypes.string.isRequired,
-  intro: PropTypes.string.isRequired
+  intro: PropTypes.string.isRequired,
+  projects: PropTypes.array
 }
 
 const PortfolioPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
+  const projects = data.allMarkdownRemark.edges
+  const portfolioProjects = frontmatter.projects.map(item => item.project)
+
+  frontmatter.projects = projects
+    .filter(project =>
+      portfolioProjects.includes(project.node.frontmatter.title)
+    )
+    .map(project => {
+      return {
+        id: project.node.id,
+        title: project.node.frontmatter.title,
+        tags: project.node.frontmatter.tags,
+        featured: project.node.frontmatter.featured,
+        date: project.node.frontmatter.date
+      }
+    })
 
   return (
     <PortfolioPageTemplate
       title={frontmatter.title}
       heading={frontmatter.heading}
       intro={frontmatter.intro}
+      projects={frontmatter.projects}
     />
   )
 }
@@ -88,6 +105,21 @@ export const portfolioPageQuery = graphql`
         intro
         projects {
           project
+        }
+      }
+    }
+    allMarkdownRemark(
+      filter: { frontmatter: { templateKey: { eq: "project" } } }
+    ) {
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date
+            tags
+            featured
+          }
         }
       }
     }
