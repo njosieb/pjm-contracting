@@ -5,27 +5,30 @@ module.exports = {
     node: true,
     es6: true
   },
-  parser: "babel-eslint",
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 2017,
     jsx: true,
     modules: true
   },
-  plugins: ["prettier"],
+  plugins: ['prettier'],
   extends: [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    require.resolve("eslint-config-prettier")
+    'eslint:recommended',
+    'plugin:react/recommended',
+    require.resolve('eslint-config-prettier')
   ],
   overrides: [
     {
-      files: ["src/**/*"],
+      files: ['src/**/*'],
       rules: {
-        "no-var": ["error"],
-        radix: ["error"],
-        "prettier/prettier": "warn",
-        "react/jsx-max-props-per-line": "off"
+        'no-var': ['error'],
+        radix: ['error'],
+        'prettier/prettier': 'warn',
+        'react/jsx-max-props-per-line': [
+          'error',
+          { maximum: 5, when: 'multiline' }
+        ]
       }
     }
   ]
-};
+}
