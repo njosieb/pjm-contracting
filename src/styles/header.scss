@@ -1,11 +1,10 @@
 .site-header {
-  position: absolute;
+  position: fixed;
   width: 100%;
   z-index: 11;
   top: 0;
 
   @media (min-width: $tablet) {
-    min-width: 1000px;
     border-left: 2rem solid transparent;
     border-right: 2rem solid transparent;
   }
@@ -58,7 +57,7 @@
 }
 
 .menu {
-  padding: 1rem 2rem;
+  padding: 1rem 2rem 1rem 0;
   display: none;
 
   .menu-item {
@@ -67,7 +66,7 @@
     position: relative;
 
     &::after {
-      content: "";
+      content: '';
       display: inline;
       position: absolute;
       bottom: 0rem;

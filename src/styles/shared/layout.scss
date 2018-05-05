@@ -88,7 +88,7 @@ main {
 
   &:before,
   &:after {
-    content: "";
+    content: '';
     display: block;
     position: absolute;
     left: 0;
@@ -119,13 +119,13 @@ main {
 
 .main-container {
   &:after {
-    content: "";
+    content: '';
     position: fixed;
     top: 0;
     right: 0;
     width: calc(100vw - 300px);
     height: 100%;
-    background: fade($black, 85);
+    background: fade-out($black, 0.15);
     display: block;
     z-index: 9;
     opacity: 0;

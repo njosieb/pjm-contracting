@@ -23,6 +23,7 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale;
+  min-width: 320px;
 }
 
 /**
@@ -109,7 +110,7 @@ blockquote {
         font-weight: 400;
 
         &::before {
-          content: "\2014";
+          content: '\2014';
           display: inline;
         }
       }

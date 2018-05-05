@@ -105,7 +105,7 @@
   h3 {
     top: 50%;
     margin-top: -28px;
-    background-color: fade($grey-lightest, 80%);
+    background-color: fade-out($grey-lightest, 0.2);
   }
 }
 

@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import uniq from 'lodash/uniq'
+import capitalize from 'lodash/capitalize'
+import { ProjectCard } from '../components/ProjectCard'
 
 export class PortfolioPageTemplate extends Component {
   constructor(props) {
     super(props)
     this.state = {
       filteredProjects: [],
-      activeTag: ''
+      activeTag: location.hash.replace('#', '') || ''
     }
 
     this.filterProjects = this.filterProjects.bind(this)
@@ -23,10 +25,10 @@ export class PortfolioPageTemplate extends Component {
       newFiltered = this.props.projects
     } else {
       newFiltered = this.props.projects.filter(project =>
-        project.tags.includes(filteringTag)
+        project.tags.includes(capitalize(filteringTag))
       )
     }
-
+    history.pushState(null, null, `#${filteringTag}`)
     this.setState({
       filteredProjects: newFiltered,
       activeTag: filteringTag
@@ -42,8 +44,7 @@ export class PortfolioPageTemplate extends Component {
           className="portfolio-header pt6 pb5"
           style={{
             backgroundImage: `url(${heading}`
-          }}
-        >
+          }}>
           <h1 className="mw7 f-5 center white mv0">{title}</h1>
         </div>
         <div className="portfoilo-body">
@@ -55,45 +56,25 @@ export class PortfolioPageTemplate extends Component {
                   ? 'project-filter clickable underline-hover mh3 pointer f4 active'
                   : 'project-filter clickable underline-hover mh3 pointer f4'
               }
-              onClick={() => this.filterProjects('')}
-            >
+              onClick={() => this.filterProjects('')}>
               All
             </div>
             {tags.map((tag, i) => (
               <div
                 key={i}
-                onClick={() => this.filterProjects(tag)}
+                onClick={() => this.filterProjects(tag.toLowerCase())}
                 className={
-                  activeTag === tag
+                  activeTag === tag.toLowerCase()
                     ? 'project-filter clickable underline-hover mh3 pointer f4 active'
                     : 'project-filter clickable underline-hover mh3 pointer f4'
-                }
-              >
+                }>
                 {tag}
               </div>
             ))}
           </div>
           <div className="portfolio-container flex flex-wrap justify-center pb4 pt4">
             {filteredProjects.map((project, id) => (
-              <div
-                key={id}
-                id={project.id}
-                className="project pointer relative mb4 mh4"
-              >
-                <div className="project-info absolute w-100">
-                  <h3 className="project-title tc pt3 ma0 flex items-center justify-center">
-                    <span className="project-title-text blue-darker underline-hover lh-copy">
-                      {project.title}
-                    </span>
-                    <div className="project-date tc f5 lh-copy">
-                      &nbsp;&mdash; {project.date}
-                    </div>
-                  </h3>
-                </div>
-                <div className="image-container center hover-shadow">
-                  <img className="db" src={project.featured} />
-                </div>
-              </div>
+              <ProjectCard key={id} project={project} />
             ))}
           </div>
         </div>
@@ -173,7 +154,7 @@ export const portfolioPageQuery = graphql`
           id
           frontmatter {
             title
-            date
+            date(formatString: "MMMM YYYY")
             tags
             featured
           }

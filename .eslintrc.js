@@ -17,18 +17,11 @@ module.exports = {
     'plugin:react/recommended',
     require.resolve('eslint-config-prettier')
   ],
-  overrides: [
-    {
-      files: ['src/**/*'],
-      rules: {
-        'no-var': ['error'],
-        radix: ['error'],
-        'prettier/prettier': 'warn',
-        'react/jsx-max-props-per-line': [
-          'error',
-          { maximum: 5, when: 'multiline' }
-        ]
-      }
-    }
-  ]
+  rules: {
+    'no-var': ['error'],
+    radix: ['error'],
+    'prettier/prettier': 'warn',
+    'react/jsx-wrap-multilines': 0,
+    'react/jsx-max-props-per-line': 0
+  }
 }

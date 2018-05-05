@@ -31,4 +31,36 @@ collections:
           - {label: Title, name: title, widget: string}
           - {label: Heading, name: heading, widget: image}
           - {label: Intro, name: intro, widget: text}
-          - {label: Projects, name: projects, widget: list, fields: [{label: Project, name: project, widget: relation, collection: projects, searchFields: ["title"], valueField: "title"}]}
+          - label: Projects
+            name: projects
+            widget: list
+            fields:
+              - label: Project
+                name: project
+                widget: relation
+                collection: projects
+                searchFields: ["title"]
+                valueField: "title"
+
+  - name: settings
+    label: Settings
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: home
+        label: Home Page Settings
+        file: "_data/home.yml"
+        description: Settings for the Home Page
+        fields:
+          - {label: Site Title, name: siteTitle, widget: string}
+          - {label: Site Subtitle, name: siteSubtitle, widget: string}
+          - {label: Home Title, name: homeTagline, widget: string, description: "Appears below the logo on the homepage"}
+          - {label: Header Image, name: headerImage, widget: image, description: "Big image at the top of the home page"}
+          - {label: About Us Section, name: aboutUsText, widget: text}
+          - label: What I Do Section
+            name: whatIDo
+            widget: object
+            fields:
+              - {label: Description, name: description, widget: text}
+          - {label: Contact Options, name: contactUsSection, widget: object, fields: [{label: Address, name: address, widget: string, description: "Full address, ex: 1234 Contact Lane, St. Louis, MO. 63301"}, {label: Email, name: email, widget: string}, {label: Instagram, name: instagram, widget: string}, {label: Facebook, name: facebook, widget: string}]}

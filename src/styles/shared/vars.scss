@@ -1,10 +1,10 @@
-$base-font-family: "Prompt", Helvetica, Arial, sans-serif;
+$base-font-family: 'Prompt', Helvetica, Arial, sans-serif;
 @font-face {
-  font-family: "FontAwesome";
+  font-family: 'FontAwesome';
   src: url(/fonts/fontawesome-webfont.eot);
-  src: url("/fonts/fontawesome-webfont.woff2") format("woff2"),
-    url("/fonts/fontawesome-webfont.woff") format("woff"),
-    url("/fonts/fontawesome-webfont.ttf") format("truetype");
+  src: url('/fonts/fontawesome-webfont.woff2') format('woff2'),
+    url('/fonts/fontawesome-webfont.woff') format('woff'),
+    url('/fonts/fontawesome-webfont.ttf') format('truetype');
 }
 $base-font-size: 12pt;
 $base-line-height: 1.4;
@@ -70,6 +70,6 @@ $timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
 $content-width: 1080px;
 
 $mobile: 450px;
-$tablet: 600px;
+$tablet: 800px;
 $laptop: 1000px;
 $desktop: 1400px;

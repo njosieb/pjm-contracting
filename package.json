@@ -7,8 +7,9 @@
     "bulma": "^0.6.0",
     "font-awesome": "^4.7.0",
     "gatsby": "^1.9.213",
+    "gatsby-image": "^1.0.43",
     "gatsby-link": "^1.6.37",
-    "gatsby-plugin-netlify-cms": "^1.0.9",
+    "gatsby-plugin-netlify-cms": "latest",
     "gatsby-plugin-react-helmet": "^2.0.5",
     "gatsby-plugin-sass": "^1.0.17",
     "gatsby-plugin-sharp": "^1.6.34",
@@ -20,6 +21,7 @@
     "lodash": "^4.17.5",
     "lodash-webpack-plugin": "^0.11.4",
     "prop-types": "^15.6.0",
+    "netlify-cms": "^1.4.0",
     "react": "^16.2.0",
     "react-helmet": "^5.2.0",
     "tachyons": "^4.6.2"
