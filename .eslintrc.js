@@ -11,7 +11,7 @@ module.exports = {
     jsx: true,
     modules: true
   },
-  plugins: ["prettier", "graphql"],
+  plugins: ["prettier"],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",

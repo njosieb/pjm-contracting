@@ -1,4 +1,5 @@
 import format from 'date-fns/format'
+import Link from 'gatsby-link'
 import uniq from 'lodash/uniq'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -40,18 +41,18 @@ export const PortfolioPageTemplate = ({
         </div>
         <div className="portfolio-container flex flex-wrap justify-center pb4 pt4">
           {/* <div>Projects Coming Soon!!</div> */}
-          {projects.map((project, id) => {
-            const projectDate = format(project.date, 'MMM YYYY')
+          {projects.map(project => {
+            const projectDate = format(project.frontmatter.date, 'MMM YYYY')
             return (
-              <div
-                key={id}
-                id={project.id}
+              <Link
+                key={project.id}
+                to={project.fields.slug}
                 className="project pointer relative mb4 mh4" // {{ project.tags | string | replace(',', ' ') | lower }}
               >
                 <div className="project-info absolute w-100">
                   <h3 className="project-title tc pt3 ma0 flex items-center justify-center">
                     <span className="project-title-text blue-darker underline-hover lh-copy">
-                      {project.title}
+                      {project.frontmatter.title}
                     </span>
                     <div className="project-date tc f5 lh-copy">
                       &nbsp;&mdash; {projectDate}
@@ -59,9 +60,9 @@ export const PortfolioPageTemplate = ({
                   </h3>
                 </div>
                 <div className="image-container center hover-shadow">
-                  <img className="db" src={project.featured} />
+                  <img className="db" src={project.frontmatter.featured} />
                 </div>
-              </div>
+              </Link>
             )
           })}
         </div>
@@ -81,13 +82,13 @@ PortfolioPageTemplate.propTypes = {
 const PortfolioPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
   const { edges } = data.allMarkdownRemark
-  const projectRaws = edges.map(edge => edge.node.frontmatter)
+  const projectRaws = edges.map(edge => edge.node)
   frontmatter.projects = frontmatter.projects.map(projectNode =>
-    projectRaws.find(proj => proj.title === projectNode.project)
+    projectRaws.find(proj => proj.frontmatter.title === projectNode.project)
   )
   const tags = uniq(
     frontmatter.projects.reduce(
-      (tagList, project) => [...tagList, ...project.tags],
+      (tagList, project) => [...tagList, ...project.frontmatter.tags],
       []
     )
   )
@@ -126,6 +127,10 @@ export const portfolioPageQuery = graphql`
     ) {
       edges {
         node {
+          id
+          fields {
+            slug
+          }
           frontmatter {
             title
             date

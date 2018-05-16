@@ -1,5 +1,5 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
 
 export const ProjectTemplate = ({
   title,
@@ -10,11 +10,11 @@ export const ProjectTemplate = ({
   slideshow
 }) => {
   return (
-    <section className="modal relative">
-      <div className="modal-header">
+    <section className="relative">
+      <div className="">
         <h3>{title}</h3>
       </div>
-      <div className="modal-body">
+      <div className="">
         <div className="project-date">{date}</div>
         <div className="project-tags">
           {tags.map((tag, i) => (
@@ -47,6 +47,27 @@ ProjectTemplate.propTypes = {
   slideshow: PropTypes.array
 }
 
+const Project = ({ data }) => {
+  const { frontmatter: project } = data.markdownRemark
+
+  return (
+    <ProjectTemplate
+      title={project.title}
+      description={project.description}
+      date={project.date}
+      tags={project.tags}
+      featured={project.featured}
+      slideshow={project.slideshow}
+    />
+  )
+}
+
+Project.propTypes = {
+  data: PropTypes.shape({
+    markdownRemark: PropTypes.object
+  })
+}
+
 export const projectQuery = graphql`
   query ProjectByID($id: String!) {
     markdownRemark(id: { eq: $id }) {
@@ -63,26 +84,5 @@ export const projectQuery = graphql`
     }
   }
 `
-
-const Project = ({ data }) => {
-  const { markdownRemark: project } = data
-
-  return (
-    <ProjectTemplate
-      title={project.frontmatter.title}
-      description={project.frontmatter.description}
-      date={project.frontmatter.date}
-      tags={project.frontmatter.tags}
-      featured={project.frontmatter.featured}
-      slideshow={project.frontmatter.slideshow}
-    />
-  )
-}
-
-Project.propTypes = {
-  data: PropTypes.shape({
-    markdownRemark: PropTypes.object
-  })
-}
 
 export default Project
