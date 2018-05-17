@@ -1,12 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
-
+import React from 'react'
 import logo from '../img/logo.png'
 
 export default class IndexPage extends React.Component {
   render() {
-    // const { data } = this.props;
+    // const { data } = this.props
     // const { edges: projects } = data.allMarkdownRemark;
 
     return (
