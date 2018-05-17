@@ -43,7 +43,7 @@ ProjectTemplate.propTypes = {
   description: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   tags: PropTypes.array,
-  featured: PropTypes.string,
+  featured: PropTypes.object,
   slideshow: PropTypes.array
 }
 
@@ -76,9 +76,21 @@ export const projectQuery = graphql`
         description
         date(formatString: "MMMM, YYYY")
         tags
-        featured
+        featured {
+          childImageSharp {
+            sizes(maxWidth: 700, quality: 80) {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
         slideshow {
-          slideImage
+          slideImage {
+            childImageSharp {
+              sizes(maxWidth: 700, quality: 95) {
+                ...GatsbyImageSharpSizes
+              }
+            }
+          }
         }
       }
     }

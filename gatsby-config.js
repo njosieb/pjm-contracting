@@ -2,6 +2,9 @@ module.exports = {
   siteMetadata: {
     title: 'PJM Contracting, LLC',
   },
+  mapping: {
+    "MarkdownRemark.fields.projects": "MarkdownRemark"
+  },
   plugins: [
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
@@ -15,8 +18,15 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
+        path: `${__dirname}/static/img`,
+        name: 'static/img',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
         path: `${__dirname}/src/img`,
-        name: 'images',
+        name: 'src/img',
       },
     },
     'gatsby-plugin-sharp',
@@ -24,7 +34,13 @@ module.exports = {
     {
       resolve: 'gatsby-transformer-remark',
       options: {
-        plugins: [],
+        plugins: [{
+          resolve: 'gatsby-remark-images',
+          options: {
+            maxWidth: 800,
+            linkImagesToOriginal: false
+          }
+        }],
       },
     },
     {

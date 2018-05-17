@@ -1,4 +1,5 @@
 import format from 'date-fns/format'
+import Img from 'gatsby-image'
 import Link from 'gatsby-link'
 import capitalize from 'lodash/capitalize'
 import uniq from 'lodash/uniq'
@@ -36,13 +37,19 @@ export class PortfolioPageTemplate extends Component {
 
     return (
       <section className="portfolio-main">
-        <div
-          className="portfolio-header pt6 pb5"
-          style={{
-            backgroundImage: `url(${heading})`
-          }}
-        >
-          <h1 className="mw7 f-5 center white mv0">{title}</h1>
+        <div className="portfolio-header relative">
+          <Img
+            sizes={heading.childImageSharp.sizes}
+            imgStyle={{ objectPosition: 'center bottom' }}
+            style={{
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              width: '100%',
+              height: '100%'
+            }}
+          />
+          <h1 className="relative pt6 pb5 mw7 f-5 center white mv0">{title}</h1>
         </div>
         <div className="portfoilo-body">
           <p className="mw6 center tc pv3">{intro}</p>
@@ -78,7 +85,7 @@ export class PortfolioPageTemplate extends Component {
                   to={project.fields.slug}
                   className="project pointer relative mb4 mh4" // {{ project.tags | string | replace(',', ' ') | lower }}
                 >
-                  <div className="project-info absolute w-100">
+                  <div className="project-info absolute w-100 z-5">
                     <h3 className="project-title tc pt3 ma0 flex items-center justify-center">
                       <span className="project-title-text blue-darker underline-hover lh-copy">
                         {project.frontmatter.title}
@@ -89,7 +96,12 @@ export class PortfolioPageTemplate extends Component {
                     </h3>
                   </div>
                   <div className="image-container center hover-shadow">
-                    <img className="db" src={project.frontmatter.featured} />
+                    <Img
+                      className="db"
+                      title="featured-image"
+                      alt="featured image"
+                      sizes={project.frontmatter.featured.childImageSharp.sizes}
+                    />
                   </div>
                 </Link>
               )
@@ -103,7 +115,7 @@ export class PortfolioPageTemplate extends Component {
 
 PortfolioPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
-  heading: PropTypes.string.isRequired,
+  heading: PropTypes.object.isRequired,
   intro: PropTypes.string.isRequired,
   tags: PropTypes.array.isRequired,
   projects: PropTypes.array.isRequired,
@@ -111,14 +123,11 @@ PortfolioPageTemplate.propTypes = {
 }
 
 const PortfolioPage = ({ data, location }) => {
-  const { frontmatter } = data.markdownRemark
-  const { edges } = data.allMarkdownRemark
-  const projectRaws = edges.map(edge => edge.node)
-  frontmatter.projects = frontmatter.projects.map(projectNode =>
-    projectRaws.find(proj => proj.frontmatter.title === projectNode.project)
-  )
+  const { title, heading, intro } = data.markdownRemark.frontmatter
+  const { projects } = data.markdownRemark.fields
+
   const tags = uniq(
-    frontmatter.projects.reduce(
+    projects.reduce(
       (tagList, project) => [...tagList, ...project.frontmatter.tags],
       []
     )
@@ -126,10 +135,10 @@ const PortfolioPage = ({ data, location }) => {
 
   return (
     <PortfolioPageTemplate
-      title={frontmatter.title}
-      heading={frontmatter.heading}
-      intro={frontmatter.intro}
-      projects={frontmatter.projects}
+      title={title}
+      heading={heading}
+      intro={intro}
+      projects={projects}
       tags={tags}
       currentTag={capitalize(location.hash.replace('#', ''))}
     />
@@ -146,20 +155,8 @@ export default PortfolioPage
 export const portfolioPageQuery = graphql`
   query PortfolioPage($id: String!) {
     markdownRemark(id: { eq: $id }) {
-      frontmatter {
-        title
-        heading
-        intro
+      fields {
         projects {
-          project
-        }
-      }
-    }
-    allMarkdownRemark(
-      filter: { frontmatter: { templateKey: { eq: "project" } } }
-    ) {
-      edges {
-        node {
           id
           fields {
             slug
@@ -168,8 +165,28 @@ export const portfolioPageQuery = graphql`
             title
             date
             tags
-            featured
+            featured {
+              childImageSharp {
+                sizes(maxWidth: 700, quality: 95) {
+                  ...GatsbyImageSharpSizes
+                }
+              }
+            }
           }
+        }
+      }
+      frontmatter {
+        title
+        heading {
+          childImageSharp {
+            sizes(maxHeight: 375, quality: 95) {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
+        intro
+        projects {
+          project
         }
       }
     }

@@ -1,6 +1,6 @@
-const _ = require('lodash')
 const path = require('path')
 const { createFilePath } = require('gatsby-source-filesystem')
+const _ = require('lodash')
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators
@@ -43,42 +43,81 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         }
       })
     })
-
-    // Tag pages:
-    let tags = []
-    // Iterate through each post, putting all found tags into `tags`
-    projects.forEach(edge => {
-      if (_.get(edge, `node.frontmatter.tags`)) {
-        tags = tags.concat(edge.node.frontmatter.tags)
-      }
-    })
-    // Eliminate duplicate tags
-    tags = _.uniq(tags)
-
-    // Make tag pages
-    tags.forEach(tag => {
-      const tagPath = `/tags/${_.kebabCase(tag)}/`
-
-      createPage({
-        path: tagPath,
-        component: path.resolve(`src/templates/tags.js`),
-        context: {
-          tag
-        }
-      })
-    })
   })
 }
 
-exports.onCreateNode = ({ node, boundActionCreators, getNode }) => {
-  const { createNodeField } = boundActionCreators
+const adjustImagePath = nodePath => image => {
+  if (_.isString(image)) {
+    if (image.indexOf('/img') === 0) {
+      const nextImage = path.relative(
+        path.dirname(nodePath),
+        path.join(
+          __dirname,
+          'static/img',
+          image.substr('/img'.length)
+        )
+      )
+      console.log('Adjusted image path', nextImage)
+      return nextImage
+    }
+  }
+  return image
+}
 
-  if (node.internal.type === `MarkdownRemark`) {
+exports.onCreateNode = ({
+  node,
+  getNode,
+  boundActionCreators
+}) => {
+  const { createNodeField } = boundActionCreators
+  if (node.internal.type === 'MarkdownRemark') {
     const value = createFilePath({ node, getNode })
     createNodeField({
       name: `slug`,
       node,
       value
     })
+    const { frontmatter } = node
+    if (frontmatter) {
+      const adjust = adjustImagePath(node.fileAbsolutePath)
+      const { featured, heading, slideshow } = frontmatter
+      // Image location string -> ImageSharp objects
+      if (featured) {
+        node.frontmatter.featured = adjust(featured)
+      }
+      if (heading) {
+        node.frontmatter.heading = adjust(heading)
+      }
+      if (slideshow) {
+        node.frontmatter.slideshow.forEach(slide => {
+          slide.slideImage = adjust(slide.slideImage)
+        })
+      }
+    }
   }
+}
+
+exports.sourceNodes = ({ boundActionCreators, getNodes }) => {
+  const { createNodeField } = boundActionCreators;
+
+  getNodes()
+    .filter(node => node.internal.type === "MarkdownRemark")
+    .forEach(node => {
+      if (node.frontmatter.projects) {
+        const projectIds = node.frontmatter.projects.map(projectItem => {
+          const projectNode = getNodes().find(node2 => node2.internal.type === "MarkdownRemark" && node2.frontmatter.title === projectItem.project);
+          if (projectNode) {
+            return projectNode.id
+          } else {
+            return
+          }
+        })
+
+        createNodeField({
+          node,
+          name: "projects",
+          value: projectIds,
+        })
+      }
+    })
 }
