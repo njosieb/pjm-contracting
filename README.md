@@ -10,5 +10,5 @@
 * [ ] Readd lightbox slideshow on project pages
 * [ ] Cleanup style of app
 * [ ] Design Admin preview pages for projects, portfolio, and home
-* [ ] Add Contact form using Netlify
 * [ ] Host through Peter's Netlify account
+* [ ] Create Homepage with What We Do component (which are just tags)
