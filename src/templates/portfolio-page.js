@@ -49,7 +49,9 @@ export class PortfolioPageTemplate extends Component {
               height: '100%'
             }}
           />
-          <h1 className="relative pt6 pb5 mw7 f-5 center white mv0">{title}</h1>
+          <h1 className="relative pt6 pb5 mw7 f-5 center white z-2 mv0">
+            {title}
+          </h1>
         </div>
         <div className="portfoilo-body">
           <p className="mw6 center tc pv3">{intro}</p>
@@ -85,15 +87,25 @@ export class PortfolioPageTemplate extends Component {
                   to={project.fields.slug}
                   className="project pointer relative mb4 mh4" // {{ project.tags | string | replace(',', ' ') | lower }}
                 >
-                  <div className="project-info absolute w-100 z-5">
+                  <div className="project-info blue-darker absolute w-100 z-5">
                     <h3 className="project-title tc pt3 ma0 flex items-center justify-center">
-                      <span className="project-title-text blue-darker underline-hover lh-copy">
+                      <span className="project-title-text underline-hover lh-copy">
                         {project.frontmatter.title}
                       </span>
                       <div className="project-date tc f5 lh-copy">
                         &nbsp;&mdash; {projectDate}
                       </div>
                     </h3>
+                    <div className="project-tags flex justify-center pb2">
+                      {project.frontmatter.tags.map((tag, i) => (
+                        <span key={i}>
+                          <span className="blue-darker">{tag}</span>
+                          {i + 1 < project.frontmatter.tags.length && (
+                            <span>,&nbsp;</span>
+                          )}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                   <div className="image-container center hover-shadow">
                     <Img

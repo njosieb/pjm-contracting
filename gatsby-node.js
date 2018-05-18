@@ -80,7 +80,7 @@ exports.onCreateNode = ({
     const { frontmatter } = node
     if (frontmatter) {
       const adjust = adjustImagePath(node.fileAbsolutePath)
-      const { featured, heading, slideshow } = frontmatter
+      const { featured, heading, slideshow, whatSection } = frontmatter
       // Image location string -> ImageSharp objects
       if (featured) {
         node.frontmatter.featured = adjust(featured)
@@ -91,6 +91,11 @@ exports.onCreateNode = ({
       if (slideshow) {
         node.frontmatter.slideshow.forEach(slide => {
           slide.slideImage = adjust(slide.slideImage)
+        })
+      }
+      if (whatSection) {
+        node.frontmatter.whatSection.whatBoxes.forEach(box => {
+          box.boxImage = adjust(box.boxImage)
         })
       }
     }

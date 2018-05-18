@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 
-const Footer = () => (
+const Footer = ({ instagram, facebook, email }) => (
   <div className="site-footer">
     <div className="footer-top bg-off-black pv4">
       <div className="footer-columns db">
@@ -8,17 +9,17 @@ const Footer = () => (
         <div className="footer-column">
           <ul className="social-media links ">
             <li className="db">
-              <a className="social-media-link db" href="">
+              <a className="social-media-link db" href={instagram}>
                 <i className="fa fa-instagram db black" />
               </a>
             </li>
             <li className="db">
-              <a className="social-media-link db" href="">
+              <a className="social-media-link db" href={facebook}>
                 <i className="fa fa-facebook db black" />
               </a>
             </li>
             <li className="db">
-              <a className="social-media-link db" href="">
+              <a className="social-media-link db" href={email}>
                 <i className="fa fa-envelope-o db black" />
               </a>
             </li>
@@ -46,5 +47,11 @@ const Footer = () => (
     </div>
   </div>
 )
+
+Footer.propTypes = {
+  instagram: PropTypes.string,
+  facebook: PropTypes.string,
+  email: PropTypes.string
+}
 
 export default Footer

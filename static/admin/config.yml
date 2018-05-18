@@ -37,5 +37,21 @@ collections:
         name: homepage
         fields:
           - {label: Template Key, name: templateKey, widget: hidden, default: home-page}
+          - {label: Tagline, name: tagline, widget: string}
           - {label: Heading, name: heading, widget: image}
-          - {label: What I Do, name: slideshow, widget: list, fields: [{label: Tag, name: tag, widget: string}, {label: Image, name: slideImage, widget: image}]}
+          - {label: About Us Section, name: aboutSection, widget: object, fields:
+            - {label: Heading, name: aboutHeading, widget: string}
+            - {label: Text, name: aboutText, widget: markdown}
+            }
+          - {label: What I Do Section, name: whatSection, widget: object, fields:
+            - {label: Heading, name: whatHeading, widget: string}
+            - {label: Text, name: whatText, widget: markdown}
+            - {label: Blocks, name: whatBoxes, widget: list, fields: [{label: Tag, name: tag, widget: string}, {label: Image, name: boxImage, widget: image}]}
+            }
+          - {label: Contact Section, name: contactSection, widget: object, fields:
+            - {label: Heading, name: contactHeading, widget: string}
+            - {label: Text, name: contactText, widget: markdown}
+            - {label: Instagram, name: instagram, widget: string}
+            - {label: Facebook, name: facebook, widget: string}
+            - {label: Email, name: email, widget: string}
+          }

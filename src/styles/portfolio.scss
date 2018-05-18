@@ -14,7 +14,7 @@ main.portfolio {
 
 .project-info {
   top: 0;
-  background-color: fade($grey-lightest, 80%);
+  background-color: transparentize($grey-lightest, .2);
 }
 
 .project-filter {
@@ -32,12 +32,16 @@ main.portfolio {
 }
 
 .portfolio-header {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center bottom 40%;
-}
 
-h1 {
-  text-shadow: 1px 1px $blue-darker, 1px -1px $blue-darker,
-    -1px -1px $blue-darker, -1px 1px $blue-darker;
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: hsla(416, 100%, 50%, 0.3);
+    z-index: 1;
+  }
 }

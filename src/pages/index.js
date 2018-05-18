@@ -6,7 +6,13 @@ import logo from '../img/logo.png'
 
 export class IndexPageTemplate extends React.Component {
   render() {
-    const { heading, whatIDo } = this.props
+    const {
+      tagline,
+      heading,
+      aboutSection,
+      whatSection,
+      contactSection
+    } = this.props
 
     return (
       <main className="home-main">
@@ -26,26 +32,20 @@ export class IndexPageTemplate extends React.Component {
               <img id="logo-background" src={logo} />
             </div>
             <div id="site-slogan">
-              <h3 className="tc white pv4">
-                'Big project, small job, I'll manage'
-              </h3>
+              <h3 className="tc white pv4">{tagline}</h3>
               <Link
                 to={{ pathname: '/', hash: '#contact' }}
                 className="action-button f3 pb3 fw7"
               >
-                Contact Us!
+                Get An Estimate!
               </Link>
             </div>
           </div>
         </section>
         <section id="about-us" className="relative pv4 bg-white">
           <div className="mw6 center">
-            <h2 className="off-black">About Us</h2>
-            {/* TODO: insert stuff about him here */}
-            <p>
-              Operating in the St. Louis and Kansas City areas, Peter McGaughey
-              is the handyman for all residential and commercial needs.
-            </p>
+            <h2 className="off-black">{aboutSection.aboutHeading}</h2>
+            <p dangerouslySetInnerHTML={{ __html: aboutSection.aboutText }} />
           </div>
           <div className="awesome-icons mw7 center flex justify-around blue-darker pv5">
             <i className="fa fa-home f-5" />
@@ -60,12 +60,13 @@ export class IndexPageTemplate extends React.Component {
           className="relative white bg-green overflow-auto pv4"
         >
           <div className="">
-            <h2 className="mw6 center pb2">What I Do</h2>
-            <p className="mw6 center pb3">
-              Click on any of these to see my portfolio
-            </p>
+            <h2 className="mw6 center pb2">{whatSection.whatHeading}</h2>
+            <p
+              className="mw6 center pb3"
+              dangerouslySetInnerHTML={{ __html: whatSection.whatText }}
+            />
             <div className="mw7 center flex flex-wrap w-100 justify-center ml0 pl0">
-              {whatIDo.map((box, id) => (
+              {whatSection.whatBoxes.map((box, id) => (
                 <div
                   key={id}
                   className="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow"
@@ -78,7 +79,7 @@ export class IndexPageTemplate extends React.Component {
                     }}
                   >
                     <Img
-                      resolutions={box.slideImage.childImageSharp.resolutions}
+                      resolutions={box.boxImage.childImageSharp.resolutions}
                       style={{
                         display: 'block',
                         position: 'absolute',
@@ -100,17 +101,10 @@ export class IndexPageTemplate extends React.Component {
           className="relative overflow-auto pv4 bg-white"
         >
           <div className="mw6 center">
-            <h2>Contact Us</h2>
-            <p>12345 Hire Us Today Drive</p>
-            <p>
-              Email Us Today at
-              <a
-                className="blue-darker underline pl2"
-                href="mailto:pjm966@gmail.com"
-              >
-                pjm966@gmail.com
-              </a>
-            </p>
+            <h2>{contactSection.contactHeading}</h2>
+            <p
+              dangerouslySetInnerHTML={{ __html: contactSection.contactText }}
+            />
           </div>
         </section>
       </main>
@@ -119,14 +113,31 @@ export class IndexPageTemplate extends React.Component {
 }
 
 IndexPageTemplate.propTypes = {
+  tagline: PropTypes.string.isRequired,
   heading: PropTypes.object.isRequired,
-  whatIDo: PropTypes.array.isRequired
+  aboutSection: PropTypes.object.isRequired,
+  whatSection: PropTypes.object.isRequired,
+  contactSection: PropTypes.object.isRequired
 }
 
 const IndexPage = ({ data }) => {
-  const { heading, slideshow } = data.markdownRemark.frontmatter
+  const {
+    tagline,
+    heading,
+    aboutSection,
+    whatSection,
+    contactSection
+  } = data.markdownRemark.frontmatter
 
-  return <IndexPageTemplate heading={heading} whatIDo={slideshow} />
+  return (
+    <IndexPageTemplate
+      tagline={tagline}
+      heading={heading}
+      aboutSection={aboutSection}
+      whatSection={whatSection}
+      contactSection={contactSection}
+    />
+  )
 }
 
 IndexPage.propTypes = {
@@ -143,6 +154,7 @@ export const indexPageQuery = graphql`
   query IndexPage {
     markdownRemark(frontmatter: { templateKey: { eq: "home-page" } }) {
       frontmatter {
+        tagline
         heading {
           childImageSharp {
             sizes(maxWidth: 1280) {
@@ -150,15 +162,27 @@ export const indexPageQuery = graphql`
             }
           }
         }
-        slideshow {
-          tag
-          slideImage {
-            childImageSharp {
-              resolutions(width: 200, height: 200) {
-                ...GatsbyImageSharpResolutions
+        aboutSection {
+          aboutHeading
+          aboutText
+        }
+        whatSection {
+          whatHeading
+          whatText
+          whatBoxes {
+            tag
+            boxImage {
+              childImageSharp {
+                resolutions(width: 200, height: 200) {
+                  ...GatsbyImageSharpResolutions
+                }
               }
             }
           }
+        }
+        contactSection {
+          contactHeading
+          contactText
         }
       }
     }
