@@ -6,9 +6,9 @@
 * [x] Create Project data type
 * [x] Readd tag filtering on portfolio page
 * [x] Optimize images
+* [x] Create Homepage with What We Do component (which are just tags)
 * [ ] Readd lightbox slideshow on project pages
-* [ ] Restyle app a la ThemeForest
+* [ ] Cleanup style of app
 * [ ] Design Admin preview pages for projects, portfolio, and home
-* [ ] Create Homepage with What We Do component (which are just tags)
 * [ ] Add Contact form using Netlify
 * [ ] Host through Peter's Netlify account

@@ -1,24 +1,27 @@
+import Img from 'gatsby-image'
 import Link from 'gatsby-link'
+import PropTypes from 'prop-types'
 import React from 'react'
 import logo from '../img/logo.png'
 
-export default class IndexPage extends React.Component {
+export class IndexPageTemplate extends React.Component {
   render() {
-    // const { data } = this.props
-    // const { edges: projects } = data.allMarkdownRemark;
+    const { heading, whatIDo } = this.props
 
     return (
       <main className="home-main">
-        <section id="top-splash" className="transparent-section">
-          <div className="parallax">
-            <div
-              className="parallax-image"
-              style={{
-                backgroundImage: 'url(/img/painter_1.jpg)'
-              }}
-            />
-          </div>
-          <div className="hero-container pt5 pb5">
+        <section id="top-splash" className="transparent-section relative">
+          <Img
+            sizes={heading.childImageSharp.sizes}
+            style={{
+              position: 'absolute',
+              left: 0,
+              top: 0,
+              width: '100%',
+              height: '100%'
+            }}
+          />
+          <div className="hero-container pt5 pb5 relative">
             <div className="image-container">
               <img id="logo-background" src={logo} />
             </div>
@@ -62,61 +65,33 @@ export default class IndexPage extends React.Component {
               Click on any of these to see my portfolio
             </p>
             <div className="mw7 center flex flex-wrap w-100 justify-center ml0 pl0">
-              {/* TODO: picture boxes that filter */}
-              <div className="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
-                <Link
-                  className="db"
-                  to={{ pathname: '/portfolio', hash: '#interior' }}
+              {whatIDo.map((box, id) => (
+                <div
+                  key={id}
+                  className="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow"
                 >
-                  <img className="db" src="/img/fendler_1.jpg" />
-                  <h3 className="absolute w-100 tc blue-darker">Interior</h3>
-                </Link>
-              </div>
-              <div className="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
-                <Link
-                  className="db"
-                  to={{ pathname: '/portfolio', hash: '#bath' }}
-                >
-                  <img className="db" src="/img/brady_gilmore_8.jpg" />
-                  <h3 className="absolute w-100 tc blue-darker">Bath</h3>
-                </Link>
-              </div>
-              <div className="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
-                <Link
-                  className="db"
-                  to={{ pathname: '/portfolio', hash: '#kitchen' }}
-                >
-                  <img className="db" src="/img/fendler_4.jpg" />
-                  <h3 className="absolute w-100 tc blue-darker">Kitchen</h3>
-                </Link>
-              </div>
-              <div className="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
-                <Link
-                  className="db"
-                  to={{ pathname: '/portfolio', hash: '#basement' }}
-                >
-                  <img className="db" src="/img/teahan_4.jpg" />
-                  <h3 className="absolute w-100 tc blue-darker">Basement</h3>
-                </Link>
-              </div>
-              <div className="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
-                <Link
-                  className="db"
-                  to={{ pathname: '/portfolio', hash: '#exterior' }}
-                >
-                  <img className="db" src="/img/mach_deck_1.jpg" />
-                  <h3 className="absolute w-100 tc blue-darker">Exterior</h3>
-                </Link>
-              </div>
-              <div className="portfolio-filter overflow-hidden mh3 mb4 relative pointer hover-shadow">
-                <Link
-                  className="db"
-                  to={{ pathname: '/portfolio', hash: '#deck' }}
-                >
-                  <img className="db" src="/img/klapmeyer_1.jpg" />
-                  <h3 className="absolute w-100 tc blue-darker">Deck</h3>
-                </Link>
-              </div>
+                  <Link
+                    className="flex items-center h-100 w-100"
+                    to={{
+                      pathname: '/portfolio',
+                      hash: `#${box.tag.toLowerCase()}`
+                    }}
+                  >
+                    <Img
+                      resolutions={box.slideImage.childImageSharp.resolutions}
+                      style={{
+                        display: 'block',
+                        position: 'absolute',
+                        left: 0,
+                        top: 0,
+                        width: '100%',
+                        height: '100%'
+                      }}
+                    />
+                    <h3 className="relative w-100 tc blue-darker">{box.tag}</h3>
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -143,31 +118,49 @@ export default class IndexPage extends React.Component {
   }
 }
 
-// IndexPage.propTypes = {
-//   data: PropTypes.shape({
-//     allMarkdownRemark: PropTypes.shape({
-//       edges: PropTypes.array
-//     })
-//   })
-// }
+IndexPageTemplate.propTypes = {
+  heading: PropTypes.object.isRequired,
+  whatIDo: PropTypes.array.isRequired
+}
 
-// export const pageQuery = graphql`
-//   query IndexQuery {
-//     allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
-//       edges {
-//         node {
-//           excerpt(pruneLength: 400)
-//           id
-//           fields {
-//             slug
-//           }
-//           frontmatter {
-//             title
-//             templateKey
-//             date(formatString: "MMMM DD, YYYY")
-//           }
-//         }
-//       }
-//     }
-//   }
-// `
+const IndexPage = ({ data }) => {
+  const { heading, slideshow } = data.markdownRemark.frontmatter
+
+  return <IndexPageTemplate heading={heading} whatIDo={slideshow} />
+}
+
+IndexPage.propTypes = {
+  data: PropTypes.shape({
+    markdownRemark: PropTypes.shape({
+      edges: PropTypes.array
+    })
+  })
+}
+
+export default IndexPage
+
+export const indexPageQuery = graphql`
+  query IndexPage {
+    markdownRemark(frontmatter: { templateKey: { eq: "home-page" } }) {
+      frontmatter {
+        heading {
+          childImageSharp {
+            sizes(maxWidth: 1280) {
+              ...GatsbyImageSharpSizes
+            }
+          }
+        }
+        slideshow {
+          tag
+          slideImage {
+            childImageSharp {
+              resolutions(width: 200, height: 200) {
+                ...GatsbyImageSharpResolutions
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`

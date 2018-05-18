@@ -1,3 +1,4 @@
+import Img from 'gatsby-image'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -28,7 +29,7 @@ export const ProjectTemplate = ({
           {slideshow.map((image, id) => (
             <div key={id} className="image-container">
               <a href={image.slideImage} data-lightbox={id}>
-                <img className="project-image" src={image.slideImage} />
+                <Img sizes={image.slideImage.childImageSharp.sizes} />
               </a>
             </div>
           ))}

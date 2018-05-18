@@ -95,17 +95,11 @@
 }
 
 .portfolio-filter {
-  img {
-    height: 200px;
-    width: 200px;
-    object-fit: cover;
-    object-position: center;
-  }
+  height: 200px;
+  width: 200px;
 
   h3 {
-    top: 50%;
-    margin-top: -28px;
-    background-color: fade($grey-lightest, 80%);
+    background-color: transparentize($grey-lightest, .2);
   }
 }
 

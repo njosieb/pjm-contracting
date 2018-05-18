@@ -32,3 +32,10 @@ collections:
           - {label: Heading, name: heading, widget: image}
           - {label: Intro, name: intro, widget: text}
           - {label: Projects, name: projects, widget: list, fields: [{label: Project, name: project, widget: relation, collection: projects, searchFields: ["title"], valueField: "title"}]}
+      - file: src/pages/homepage.yml
+        label: Homepage
+        name: homepage
+        fields:
+          - {label: Template Key, name: templateKey, widget: hidden, default: home-page}
+          - {label: Heading, name: heading, widget: image}
+          - {label: What I Do, name: slideshow, widget: list, fields: [{label: Tag, name: tag, widget: string}, {label: Image, name: slideImage, widget: image}]}
