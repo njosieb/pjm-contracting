@@ -3,10 +3,6 @@
   width: 100%;
   z-index: 11;
   top: 0;
-
-  @media (min-width: $tablet) {
-    min-width: 1000px;
-  }
 }
 
 .site-title {
@@ -81,10 +77,6 @@
       &::after {
         border-bottom: 2px solid $green-light;
       }
-    }
-
-    &:first-child {
-      display: none;
     }
   }
 

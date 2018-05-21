@@ -1,7 +1,7 @@
 ---
 templateKey: project
 title: Gina Anderson
-description: 'anderson'
+description: description of anderson project
 date: '2017-07-07'
 tags:
   - 'Interior'

@@ -42,7 +42,7 @@ export class IndexPageTemplate extends React.Component {
             </div>
           </div>
         </section>
-        <section id="about-us" className="relative pv4 bg-white">
+        <section id="about" className="relative pv4 bg-white">
           <div className="mw6 center">
             <h2 className="off-black">{aboutSection.aboutHeading}</h2>
             <p dangerouslySetInnerHTML={{ __html: aboutSection.aboutText }} />
@@ -56,7 +56,7 @@ export class IndexPageTemplate extends React.Component {
           </div>
         </section>
         <section
-          id="work"
+          id="services"
           className="relative white bg-green overflow-auto pv4"
         >
           <div className="">
@@ -96,10 +96,7 @@ export class IndexPageTemplate extends React.Component {
             </div>
           </div>
         </section>
-        <section
-          id="contact-us"
-          className="relative overflow-auto pv4 bg-white"
-        >
+        <section id="contact" className="relative overflow-auto pv4 bg-white">
           <div className="mw6 center">
             <h2>{contactSection.contactHeading}</h2>
             <p
@@ -158,7 +155,7 @@ export const indexPageQuery = graphql`
         heading {
           childImageSharp {
             sizes(maxWidth: 1280) {
-              ...GatsbyImageSharpSizes
+              ...GatsbyImageSharpSizes_withWebp
             }
           }
         }

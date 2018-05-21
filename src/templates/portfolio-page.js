@@ -32,27 +32,13 @@ export class PortfolioPageTemplate extends Component {
   }
 
   render() {
-    const { title, heading, intro, tags } = this.props
+    const { title, intro, tags } = this.props
     const { filteredProjects, filteringTag } = this.state
 
     return (
       <section className="portfolio-main">
-        <div className="portfolio-header relative">
-          <Img
-            sizes={heading.childImageSharp.sizes}
-            imgStyle={{ objectPosition: 'center bottom' }}
-            style={{
-              position: 'absolute',
-              left: 0,
-              top: 0,
-              width: '100%',
-              height: '100%'
-            }}
-          />
-          <h1 className="relative pt6 pb5 mw7 f-5 center white z-2 mv0">
-            {title}
-          </h1>
-        </div>
+        <div className="portfolio-header relative pt5 bg-green-light" />
+        <h1 className="relative ph5 pt4 f1 lh-copy center z-2 mv0">{title}</h1>
         <div className="portfoilo-body">
           <p className="mw6 center tc pv3">{intro}</p>
           <div className="filtering-tags mw7 center flex justify-center">
@@ -85,7 +71,7 @@ export class PortfolioPageTemplate extends Component {
                 <Link
                   key={project.id}
                   to={project.fields.slug}
-                  className="project pointer relative mb4 mh4" // {{ project.tags | string | replace(',', ' ') | lower }}
+                  className="project pointer relative mb4 mh4"
                 >
                   <div className="project-info blue-darker absolute w-100 z-5">
                     <h3 className="project-title tc pt3 ma0 flex items-center justify-center">
@@ -127,7 +113,6 @@ export class PortfolioPageTemplate extends Component {
 
 PortfolioPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
-  heading: PropTypes.object.isRequired,
   intro: PropTypes.string.isRequired,
   tags: PropTypes.array.isRequired,
   projects: PropTypes.array.isRequired,
@@ -135,7 +120,7 @@ PortfolioPageTemplate.propTypes = {
 }
 
 const PortfolioPage = ({ data, location }) => {
-  const { title, heading, intro } = data.markdownRemark.frontmatter
+  const { title, intro } = data.markdownRemark.frontmatter
   const { projects } = data.markdownRemark.fields
 
   const tags = uniq(
@@ -148,7 +133,6 @@ const PortfolioPage = ({ data, location }) => {
   return (
     <PortfolioPageTemplate
       title={title}
-      heading={heading}
       intro={intro}
       projects={projects}
       tags={tags}
@@ -189,13 +173,6 @@ export const portfolioPageQuery = graphql`
       }
       frontmatter {
         title
-        heading {
-          childImageSharp {
-            sizes(maxHeight: 375, quality: 95) {
-              ...GatsbyImageSharpSizes
-            }
-          }
-        }
         intro
         projects {
           project

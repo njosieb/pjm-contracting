@@ -28,6 +28,7 @@
 @include tachyons-override("blue-darker", $blue-darker);
 @include tachyons-override("black", $black);
 @include tachyons-override("off-black", $offBlack);
+@include tachyons-override("grey-warm", $grey-warm);
 
 .hover-shadow {
   transition: box-shadow 0.2s ease-in-out;

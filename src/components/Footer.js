@@ -19,7 +19,7 @@ const Footer = ({ instagram, facebook, email }) => (
               </a>
             </li>
             <li className="db">
-              <a className="social-media-link db" href={email}>
+              <a className="social-media-link db" href={`mailto:${email}`}>
                 <i className="fa fa-envelope-o db black" />
               </a>
             </li>

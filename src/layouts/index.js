@@ -12,13 +12,13 @@ const TemplateWrapper = ({ children, data }) => {
     email
   } = data.markdownRemark.frontmatter.contactSection
   return (
-    <div>
+    <div id="page-body" className="flex-ns flex-column-ns">
       <Helmet
         titleTemplate="PJM Contracting, LLC. - %s"
         defaultTitle="PJM Contracting, LLC."
       />
       <Navbar />
-      <div>{children()}</div>
+      <div className="flex-auto">{children()}</div>
       <Footer instagram={instagram} facebook={facebook} email={email} />
     </div>
   )

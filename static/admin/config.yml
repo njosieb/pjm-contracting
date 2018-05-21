@@ -29,7 +29,6 @@ collections:
         fields:
           - {label: Template Key, name: templateKey, widget: hidden, default: portfolio-page}
           - {label: Title, name: title, widget: string}
-          - {label: Heading, name: heading, widget: image}
           - {label: Intro, name: intro, widget: text}
           - {label: Projects, name: projects, widget: list, fields: [{label: Project, name: project, widget: relation, collection: projects, searchFields: ["title"], valueField: "title"}]}
       - file: src/pages/homepage.yml

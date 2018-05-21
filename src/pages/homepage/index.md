@@ -39,6 +39,6 @@ contactSection:
     </p>
   instagram: peterdidit
   facebook: Peter.McGaughey
-  email: peter@mcgaughey.com 
+  email: pjm966@gmail.com 
 ---
 

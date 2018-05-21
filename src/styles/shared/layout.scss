@@ -9,6 +9,18 @@
   }
 }
 
+a {
+  color: $green;
+
+  &:hover {
+    color: $green-light;
+  }
+}
+
+#page-body {
+  min-height: 100vh;
+}
+
 .main-container {
   display: flex;
   flex-direction: column;

@@ -1,5 +1,5 @@
-import React from 'react'
 import Link from 'gatsby-link'
+import React from 'react'
 
 const Navbar = () => (
   <div className="site-header">
@@ -13,14 +13,14 @@ const Navbar = () => (
         </small>
       </div>
       <nav className="menu">
-        <Link className="menu-item" to={{ pathname: '/', hash: '#about-us' }}>
-          About Us
+        <Link className="menu-item" to={{ pathname: '/', hash: '#about' }}>
+          About
         </Link>
-        <Link className="menu-item" to={{ pathname: '/', hash: '#work' }}>
-          What We Do
+        <Link className="menu-item" to={{ pathname: '/', hash: '#services' }}>
+          Services
         </Link>
-        <Link className="menu-item" to={{ pathname: '/', hash: '#contact-us' }}>
-          Contact Us
+        <Link className="menu-item" to={{ pathname: '/', hash: '#contact' }}>
+          Contact
         </Link>
         <Link className="menu-item" to="/portfolio">
           Portfolio

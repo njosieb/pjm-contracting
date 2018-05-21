@@ -45,3 +45,46 @@ main.portfolio {
     z-index: 1;
   }
 }
+
+.image-thumbnail {
+  height: 100px;
+  width: 100px;
+}
+
+.project-info-sidebar {
+  width: 375px;
+  border-left: 1px solid $grey-warm;
+}
+
+.project-info-title {
+  border-bottom: 1px solid $grey-warm;
+}
+
+.project-tags {
+  border-bottom: 1px solid $grey-warm;
+}
+
+.project-description {
+  border-bottom: 1px solid $grey-warm;
+}
+
+.project-tag:not(:last-child) {
+  border-right: 1px solid $grey;
+}
+
+.slide-right i,
+.slide-left i {
+  text-shadow: 1px 1px 0 white, 1px -1px 0 white, -1px 1px 0 white, -1px -1px 0 white;
+}
+
+.view-full-image {
+  height: 40px;
+  width: 40px;
+  background-color: rgba($grey-warm, .8);
+  left: calc(50% - 20px);
+  transition: background-color .4s;
+
+  &:hover {
+    background-color: $grey-warm;
+  }
+}
