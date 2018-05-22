@@ -1,7 +1,8 @@
 import CMS from 'netlify-cms'
-import ProjectTemplate from '../templates/project'
+import 'netlify-cms/dist/cms.css'
 import PortfolioPagePreview from './PortfolioPagePreview'
+import ProjectPreview from './ProjectPreview'
 
-// CMS.registerPreviewStyle("/styles.css");
-CMS.registerPreviewTemplate(ProjectTemplate)
+CMS.registerPreviewStyle('/styles.css')
+CMS.registerPreviewTemplate(ProjectPreview)
 CMS.registerPreviewTemplate(PortfolioPagePreview)

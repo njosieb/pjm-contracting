@@ -31,7 +31,7 @@ collections:
           - {label: Title, name: title, widget: string}
           - {label: Intro, name: intro, widget: text}
           - {label: Projects, name: projects, widget: list, fields: [{label: Project, name: project, widget: relation, collection: projects, searchFields: ["title"], valueField: "title"}]}
-      - file: src/pages/homepage.yml
+      - file: src/pages/homepage/index.md
         label: Homepage
         name: homepage
         fields:
