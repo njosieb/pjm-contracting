@@ -6,6 +6,8 @@ import uniq from 'lodash/uniq'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
+const window = global.window
+
 export class PortfolioPageTemplate extends Component {
   constructor(props) {
     super(props)
@@ -21,7 +23,11 @@ export class PortfolioPageTemplate extends Component {
   }
 
   filterProjects = tag => {
-    window.history.pushState(null, null, `#${tag.toLowerCase()}`)
+    try {
+      window.history.pushState(null, null, `#${tag.toLowerCase()}`)
+    } catch (e) {
+      console.error(e) // eslint-disable-line
+    }
     const projectsToSet = tag
       ? this.props.projects.filter(proj => proj.frontmatter.tags.includes(tag))
       : this.props.projects
