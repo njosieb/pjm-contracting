@@ -95,11 +95,16 @@
 }
 
 .portfolio-filter {
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
 
   h3 {
     background-color: transparentize($grey-lightest, .2);
+  }
+
+  @media screen and (min-width: $tablet) {
+    height: 200px;
+    width: 200px;
   }
 }
 

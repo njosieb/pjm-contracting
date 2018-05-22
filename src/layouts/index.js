@@ -18,7 +18,7 @@ const TemplateWrapper = ({ children, data }) => {
         defaultTitle="PJM Contracting, LLC."
       />
       <Navbar />
-      <div className="flex-auto">{children()}</div>
+      <div className="flex-auto flex">{children()}</div>
       <Footer instagram={instagram} facebook={facebook} email={email} />
     </div>
   )

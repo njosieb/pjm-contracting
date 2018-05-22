@@ -30,7 +30,7 @@
     font-size: 1rem;
   }
 
-  @media (min-width: $tablet) {
+  @media (min-width: $laptop) {
     display: flex;
     padding: 1rem;
 
@@ -52,13 +52,14 @@
 }
 
 .menu {
-  padding: 1rem 2rem;
-  display: none;
+  padding: 1rem 2rem 1rem 0;
+  display: flex;
 
   .menu-item {
     color: white;
     margin: 0 1rem;
     position: relative;
+    display: none;
 
     &::after {
       content: "";
@@ -78,10 +79,14 @@
         border-bottom: 2px solid $green-light;
       }
     }
-  }
 
-  @media (min-width: $tablet) {
-    display: flex;
+    &:last-child {
+      display: inline;
+    }
+
+    @media screen and (min-width: $laptop) {
+      display: inline;
+    }
   }
 }
 

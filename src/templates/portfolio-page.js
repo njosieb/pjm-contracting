@@ -36,12 +36,12 @@ export class PortfolioPageTemplate extends Component {
     const { filteredProjects, filteringTag } = this.state
 
     return (
-      <section className="portfolio-main">
+      <section className="portfolio-main flex-auto">
         <div className="portfolio-header relative pt5 bg-green-light" />
         <h1 className="relative ph5 pt4 f1 lh-copy center z-2 mv0">{title}</h1>
         <div className="portfoilo-body">
-          <p className="mw6 center tc pv3">{intro}</p>
-          <div className="filtering-tags mw7 center flex justify-center">
+          <p className="mw6 center tc pa3">{intro}</p>
+          <div className="filtering-tags mw7 center flex flex-wrap flex-nowrap-ns justify-center">
             <div
               id="all-projects"
               className={`project-filter underline-hover mh3 pointer f4 ${

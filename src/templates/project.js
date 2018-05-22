@@ -1,7 +1,7 @@
-import Img from 'gatsby-image'
-import Link from 'gatsby-link'
-import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import Img from 'gatsby-image';
+import Link from 'gatsby-link';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 export class ProjectTemplate extends Component {
   constructor(props) {
@@ -41,32 +41,9 @@ export class ProjectTemplate extends Component {
     const currentImage = slideshow[this.state.viewingImageIndex]
 
     return (
-      <section className="project-page-container relative pt5 flex bg-green-light">
-        <div className="project-slide-viewer flex-auto flex items-center bg-white">
-          <div className="project-single-slide flex-auto relative">
-            <Img sizes={currentImage.slideImage.childImageSharp.sizes} />
-            <div
-              className="slide-left pointer w-50 absolute h-100 top-0 left-0 flex items-center pl3"
-              onClick={() => this.slideLeft()}
-            >
-              <i className="fa fa-angle-left black f-5" />
-            </div>
-            <div
-              className="slide-right pointer w-50 absolute h-100 top-0 right-0 flex items-center justify-end pr3"
-              onClick={() => this.slideRight()}
-            >
-              <i className="fa fa-angle-right black f-5" />
-            </div>
-            <a
-              className="view-full-image b--gray ba br2 flex items-center justify-center absolute bottom-2"
-              href={currentImage.slideImage.childImageSharp.sizes.originalImg}
-            >
-              <i className="fa fa-search-plus black" />
-            </a>
-          </div>
-        </div>
+      <section className="project-page-container flex-auto relative pt5 bg-green-light">
         <div className="project-info-sidebar bg-white">
-          <h3 className="project-info-title ph3">{title}</h3>
+          <h3 className="project-info-title f2 f3-ns ph3">{title}</h3>
           <div className="project-date ph3 pt3">{date}</div>
           <div className="project-tags ph3 pb3 flex items-center">
             {tags.map((tag, i) => (
@@ -94,6 +71,29 @@ export class ProjectTemplate extends Component {
                 />
               </div>
             ))}
+          </div>
+        </div>
+        <div className="project-slide-viewer flex-auto flex items-center bg-white">
+          <div className="project-single-slide flex-auto relative">
+            <Img sizes={currentImage.slideImage.childImageSharp.sizes} />
+            <div
+              className="slide-left pointer w-50 absolute h-100 top-0 left-0 flex items-center pl3"
+              onClick={() => this.slideLeft()}
+            >
+              <i className="fa fa-angle-left black f-5" />
+            </div>
+            <div
+              className="slide-right pointer w-50 absolute h-100 top-0 right-0 flex items-center justify-end pr3"
+              onClick={() => this.slideRight()}
+            >
+              <i className="fa fa-angle-right black f-5" />
+            </div>
+            <a
+              className="view-full-image b--gray ba br2 flex items-center justify-center absolute bottom-2"
+              href={currentImage.slideImage.childImageSharp.sizes.originalImg}
+            >
+              <i className="fa fa-search-plus black" />
+            </a>
           </div>
         </div>
       </section>

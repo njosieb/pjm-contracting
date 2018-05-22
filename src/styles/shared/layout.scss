@@ -38,7 +38,7 @@ main {
   &.home-main {
     padding-top: $header-height;
 
-    @media (min-width: $tablet) {
+    @media (min-width: $laptop) {
       padding-top: $tablet-header-height;
     }
   }

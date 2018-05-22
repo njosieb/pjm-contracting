@@ -31,10 +31,7 @@
   padding-right: 1rem;
   color: $white;
   font-size: 1rem;
-
-  @media (min-width: $tablet) {
-    display: none;
-  }
+  display: none;
 }
 
 #main-menu {
@@ -62,7 +59,7 @@
   color: black;
   align-items: center;
 
-  @media (min-width: $tablet) {
+  @media (min-width: $laptop) {
     flex: 0 0 500px;
   }
 }

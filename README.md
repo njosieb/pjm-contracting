@@ -7,8 +7,9 @@
 * [x] Readd tag filtering on portfolio page
 * [x] Optimize images
 * [x] Create Homepage with What We Do component (which are just tags)
-* [ ] Readd lightbox slideshow on project pages
-* [ ] Cleanup style of app
+* [x] Readd lightbox slideshow on project pages
+* [x] Cleanup style of app
+* [ ] Mobile-friendly
 * [ ] Design Admin preview pages for projects, portfolio, and home
 * [ ] Host through Peter's Netlify account
-* [ ] Create Homepage with What We Do component (which are just tags)
+* [ ] Add Contact Form through Netlify

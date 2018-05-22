@@ -15,8 +15,8 @@ export class IndexPageTemplate extends React.Component {
     } = this.props
 
     return (
-      <main className="home-main">
-        <section id="top-splash" className="transparent-section relative">
+      <main className="home-main flex-auto">
+        <section id="top-splash" className="transparent-section relative ph3">
           <Img
             sizes={heading.childImageSharp.sizes}
             style={{
@@ -42,7 +42,7 @@ export class IndexPageTemplate extends React.Component {
             </div>
           </div>
         </section>
-        <section id="about" className="relative pv4 bg-white">
+        <section id="about" className="relative pv4 bg-white ph3">
           <div className="mw6 center">
             <h2 className="off-black">{aboutSection.aboutHeading}</h2>
             <p dangerouslySetInnerHTML={{ __html: aboutSection.aboutText }} />
@@ -57,7 +57,7 @@ export class IndexPageTemplate extends React.Component {
         </section>
         <section
           id="services"
-          className="relative white bg-green overflow-auto pv4"
+          className="relative white bg-green overflow-auto pv4 ph3"
         >
           <div className="">
             <h2 className="mw6 center pb2">{whatSection.whatHeading}</h2>
@@ -96,7 +96,10 @@ export class IndexPageTemplate extends React.Component {
             </div>
           </div>
         </section>
-        <section id="contact" className="relative overflow-auto pv4 bg-white">
+        <section
+          id="contact"
+          className="relative overflow-auto pv4 bg-white ph3"
+        >
           <div className="mw6 center">
             <h2>{contactSection.contactHeading}</h2>
             <p
