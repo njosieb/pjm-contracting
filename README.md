@@ -11,5 +11,5 @@
 * [x] Cleanup style of app
 * [x] Mobile-friendly
 * [ ] Design Admin preview pages for projects, portfolio, and home
-* [ ] Host through Peter's Netlify account
 * [ ] Add Contact Form through Netlify
+* [ ] Host through Peter's Netlify account

@@ -1,25 +1,44 @@
 backend:
   name: git-gateway
   branch: master
-
 media_folder: static/img
 public_folder: /img
-
 collections:
   - name: projects
     label: Projects
-    folder: "src/pages/projects"
+    folder: src/pages/projects
     create: true
-    slug: "{{year}}-{{month}}-{{slug}}"
+    slug: '{{year}}-{{month}}-{{slug}}'
     fields:
-      - {label: Template Key, name: templateKey, widget: hidden, default: project}
-      - {label: Title, name: title, widget: string}
-      - {label: Description, name: description, widget: text}
-      - {label: Date, name: date, widget: date}
-      - {label: Tags, name: tags, widget: list}
-      - {label: Featured Image, name: featured, widget: image}
-      - {label: Slideshow, name: slideshow, widget: list, fields: [{label: Image, name: slideImage, widget: image}, {label: Caption, name: caption, widget: string}]}
-
+      - label: Template Key
+        name: templateKey
+        widget: hidden
+        default: project
+      - label: Title
+        name: title
+        widget: string
+      - label: Description
+        name: description
+        widget: text
+      - label: Date
+        name: date
+        widget: date
+      - label: Tags
+        name: tags
+        widget: list
+      - label: Featured Image
+        name: featured
+        widget: image
+      - label: Slideshow
+        name: slideshow
+        widget: list
+        fields:
+          - label: Image
+            name: slideImage
+            widget: image
+          - label: Caption
+            name: caption
+            widget: string
   - name: pages
     label: Pages
     files:
@@ -27,20 +46,87 @@ collections:
         label: Portfolio Page
         name: portfolio
         fields:
-          - {label: Template Key, name: templateKey, widget: hidden, default: portfolio-page}
-          - {label: Title, name: title, widget: string}
-          - {label: Intro, name: intro, widget: text}
-          - {label: Projects, name: projects, widget: list, fields: [{label: Project, name: project, widget: relation, collection: projects, searchFields: ["title"], valueField: "title"}]}
+          - label: Template Key
+            name: templateKey
+            widget: hidden
+            default: portfolio-page
+          - label: Title
+            name: title
+            widget: string
+          - label: Intro
+            name: intro
+            widget: text
+          - label: Projects
+            name: projects
+            widget: list
+            fields:
+              - label: Project
+                name: project
+                widget: relation
+                collection: projects
+                searchFields:
+                  - title
+                valueField: title
       - file: src/pages/homepage/index.md
         label: Homepage
         name: homepage
         fields:
-          - {label: Template Key, name: templateKey, widget: hidden, default: home-page}
-          - {label: Tagline, name: tagline, widget: string}
-          - {label: Heading, name: heading, widget: image}
-          - {label: About Us Section, name: aboutSection, widget: object, fields: [{label: Heading, name: aboutHeading, widget: string}, {label: Text, name: aboutText, widget: markdown}]
-            }
-          - {label: What I Do Section, name: whatSection, widget: object, fields: [{label: Heading, name: whatHeading, widget: string}, {label: Text, name: whatText, widget: markdown}, {label: Blocks, name: whatBoxes, widget: list, fields: [{label: Tag, name: tag, widget: string}, {label: Image, name: boxImage, widget: image}]}]
-            }
-          - {label: Contact Section, name: contactSection, widget: object, fields: [{label: Heading, name: contactHeading, widget: string}, {label: Text, name: contactText, widget: markdown}, {label: Instagram, name: instagram, widget: string}, {label: Facebook, name: facebook, widget: string}, {label: Email, name: email, widget: string}]
-          }
+          - label: Template Key
+            name: templateKey
+            widget: hidden
+            default: home-page
+          - label: Tagline
+            name: tagline
+            widget: string
+          - label: Heading
+            name: heading
+            widget: image
+          - label: About Us Section
+            name: aboutSection
+            widget: object
+            fields:
+              - label: Heading
+                name: aboutHeading
+                widget: string
+              - label: Text
+                name: aboutText
+                widget: markdown
+          - label: What I Do Section
+            name: whatSection
+            widget: object
+            fields:
+              - label: Heading
+                name: whatHeading
+                widget: string
+              - label: Text
+                name: whatText
+                widget: markdown
+              - label: Blocks
+                name: whatBoxes
+                widget: list
+                fields:
+                  - label: Tag
+                    name: tag
+                    widget: string
+                  - label: Image
+                    name: boxImage
+                    widget: image
+          - label: Contact Section
+            name: contactSection
+            widget: object
+            fields:
+              - label: Heading
+                name: contactHeading
+                widget: string
+              - label: Text
+                name: contactText
+                widget: markdown
+              - label: Instagram
+                name: instagram
+                widget: string
+              - label: Facebook
+                name: facebook
+                widget: string
+              - label: Email
+                name: email
+                widget: string

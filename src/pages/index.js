@@ -2,6 +2,7 @@ import Img from 'gatsby-image'
 import Link from 'gatsby-link'
 import PropTypes from 'prop-types'
 import React from 'react'
+import ContactForm from '../components/ContactForm'
 import logo from '../img/logo.png'
 
 export class IndexPageTemplate extends React.Component {
@@ -105,6 +106,7 @@ export class IndexPageTemplate extends React.Component {
             <p
               dangerouslySetInnerHTML={{ __html: contactSection.contactText }}
             />
+            <ContactForm />
           </div>
         </section>
       </main>
